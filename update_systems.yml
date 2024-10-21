@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: update systems
+    package:
+      update_cache: yes
+      upgrade: dist
+    when: ansible_distribution in ["Debian", "Ubuntu"]
