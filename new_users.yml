@@ -1,0 +1,26 @@
+---
+
+- hosts: 
+  become: true 
+  tasks:
+
+  - name: create wknight7 user
+    tags: always
+    user: 
+      name: wknight7
+      groups: wknight7,adm,root,sudo
+
+  - name: add ssh key for wknight7
+    tags: always
+    authorized_key: 
+      user: wknight7
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGEZl1LzTr1n5cSrp0+9UV/0kv/k7+qZle9vSh5o3wmM ansible"
+
+  - name: add sudoers file for wknight7
+    tags: always
+    copy:
+      src: /etc/sudoers.d/wknight7
+      dest: /etc/sudoers.d/wknight7
+      owner: root
+      group: root
+      mode: 0440
