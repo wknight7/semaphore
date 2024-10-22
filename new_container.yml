@@ -2,6 +2,8 @@
 
 - name: create proxmox container
   hosts: proxmox
+
+  Tasks:
   community.general.proxmox:
     api_user: root@pam
     api_password: Jackson0317!
