@@ -9,6 +9,7 @@
       api_user: root@pam
       api_password: Jackson0317!
       api_host: pve
+      node: pve
       password: Jackson0317!
       hostname: test1
       ostemplate: 'local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst'
