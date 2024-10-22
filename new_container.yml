@@ -17,6 +17,7 @@
       cores: 2
 #      timezone: host
       memory: 2048
+      swap: 2048
       unprivileged: false
 
 
