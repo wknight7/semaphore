@@ -1,6 +1,6 @@
 ---
 
-- hosts: proxmox-ve
+- hosts: pve_only
   become: true
   tasks:
   
