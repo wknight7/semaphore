@@ -15,7 +15,7 @@
       ostemplate: 'local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst'
       disk: 'local-lvm:20'
       cores: 2
-      timezone: host
+#      timezone: host
       memory: 2048
       unprivileged: false
 
