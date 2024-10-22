@@ -17,7 +17,7 @@
       cores: 2
       timezone: host
       memory: 2048
-      unorivileged: false
+      unprivileged: false
 
 
 # api token id root@pam!semaphore
