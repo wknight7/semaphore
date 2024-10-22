@@ -5,7 +5,7 @@
   tasks:
   
   - name: create proxmox container
-      community.general.proxmox:
+    community.general.proxmox:
       api_user: root@pam
       api_password: Jackson0317!
       api_host: pve
