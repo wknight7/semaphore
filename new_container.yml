@@ -12,15 +12,18 @@
       node: pve
       password: Jackson0317!
       hostname: test1
-      onboot: yes
       ostemplate: 'local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst'
       disk: 'local-lvm:20'
       cores: 2
       memory: 2048
       swap: 2048
       unprivileged: false
+      onboot: yes
       netif:
         net0: "name=eth0,ip=dhcp,ip6=dhcp,bridge=vmbr0"
+    - name: Get VM ID
+      set_fact:
+        created_vmid: "{{ created_msg | regex_search('VM (\\d*)', '\\1') | first | int }}"
     - name: Execute ip a
       ansible.builtin.command: /usr/bin/perl -T /usr/sbin/pct exec {{created_vmid}} ip a show dev eth0
       register: ip_output
@@ -28,5 +31,3 @@
         set_fact:
           created_ip: "{{ ip_output | regex_search('inet (\\d*\\.\\d*\\.\\d*\\.\\d*)/', '\\1')
 
-# api token id root@pam!semaphore
-# api secret 65702452-82b5-46f3-ac95-b12f6f5ab485
