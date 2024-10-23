@@ -12,6 +12,7 @@
       node: pve
       password: Jackson0317!
       hostname: test1
+      onboot: yes
       ostemplate: 'local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst'
       disk: 'local-lvm:20'
       cores: 2
@@ -19,7 +20,8 @@
       memory: 2048
       swap: 2048
       unprivileged: false
-      netif: '{"net0":"name=eth0,ip=dhcp,ip6=dhcp,bridge=vmbr0,tag=15,hwaddr={{ mac }}"}'
+      netif:
+        net0: "name=eth0,ip=dhcp,ip6=dhcp,bridge=vmbr0"
     - name: Execute ip a
       become_user: root
       become: true
