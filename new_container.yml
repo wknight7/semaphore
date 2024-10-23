@@ -29,5 +29,5 @@
       register: ip_output
     - name: Get IP
         set_fact:
-          created_ip: "{{ ip_output | regex_search('inet (\\d*\\.\\d*\\.\\d*\\.\\d*)/', '\\1')
+          created_ip: "{{ ip_output | regex_search('inet (\\d*\\.\\d*\\.\\d*\\.\\d*)/', '\\1')"
 
