@@ -19,8 +19,7 @@
       memory: 2048
       swap: 2048
       unprivileged: false
-      netif:
-        net0: "name=eth0,ip=dhcp,ip6=dhcp,bridge=vmbr0"
+      netif: '{"net0":"name=eth0,ip=dhcp,ip6=dhcp,bridge=vmbr0,tag=15,hwaddr={{ mac }}"}'
     - name: Execute ip a
       become_user: root
       become: true
