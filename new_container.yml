@@ -27,6 +27,9 @@
       created_vmid: "{{ created_msg | regex_search('VM (\\d*)', '\\1') | first | int }}"
   - name: start container
     community.general.proxmox:
+      api_user: root@pam
+      api_password: Jackson0317!
+      api_host: pve
       vmid: '{{ created_vmid }}'
       state: started
     delegate_to: localhost
