@@ -22,14 +22,14 @@
       unprivileged: false
       netif:
         net0: "name=eth0,ip=dhcp,ip6=dhcp,bridge=vmbr0"
-#    - name: Execute ip a
-#      become_user: root
-#      become: true
-#      ansible.builtin.command: /usr/bin/perl -T /usr/sbin/pct exec {{created_vmid}} ip a show dev eth0
-#      register: ip_output
-#    - name: Get IP
-#      set_fact:
-#        created_ip: "{{ ip_output | regex_search('inet (\\d*\\.\\d*\\.\\d*\\.\\d*)/', '\\1')
+  - name: Execute ip a
+      become_user: root
+      become: true
+      ansible.builtin.command: /usr/bin/perl -T /usr/sbin/pct exec {{created_vmid}} ip a show dev eth0
+      register: ip_output
+  - name: Get IP
+      set_fact:
+        created_ip: "{{ ip_output | regex_search('inet (\\d*\\.\\d*\\.\\d*\\.\\d*)/', '\\1')
 
 # api token id root@pam!semaphore
 # api secret 65702452-82b5-46f3-ac95-b12f6f5ab485
