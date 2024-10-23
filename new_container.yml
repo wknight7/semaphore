@@ -21,13 +21,12 @@
       onboot: yes
       netif:
         net0: "name=eth0,ip=dhcp,ip6=dhcp,bridge=vmbr0"
-    - name: Get VM ID
+  - name: Get VM ID
+    set_fact:
+      created_vmid: "{{ created_msg | regex_search('VM (\\d*)', '\\1') | first | int }}"
+  - name: Execute ip a
+    ansible.builtin.command: '/usr/bin/perl -T /usr/sbin/pct exec {{created_vmid}} ip a show dev eth0'
+    register: ip_output
+  - name: Get IP
       set_fact:
-        created_vmid: "{{ created_msg | regex_search('VM (\\d*)', '\\1') | first | int }}"
-    - name: Execute ip a
-      ansible.builtin.command: '/usr/bin/perl -T /usr/sbin/pct exec {{created_vmid}} ip a show dev eth0'
-      register: ip_output
-    - name: Get IP
-        set_fact:
-          created_ip: "{{ ip_output | regex_search('inet (\\d*\\.\\d*\\.\\d*\\.\\d*)/', '\\1')"
-
+        created_ip: "{{ ip_output | regex_search('inet (\\d*\\.\\d*\\.\\d*\\.\\d*)/', '\\1')"
