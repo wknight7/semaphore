@@ -18,7 +18,7 @@
       memory: 2048
       swap: 2048
       unprivileged: false
-      onboot: yes
+      onboot: 1
       netif:
         net0: "name=eth0,ip=dhcp,ip6=dhcp,bridge=vmbr0"
     register: created_msg
