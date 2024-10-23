@@ -21,10 +21,15 @@
       onboot: 1
       netif:
         net0: "name=eth0,ip=dhcp,ip6=dhcp,bridge=vmbr0"
-    register: created_msg
+    register: created_msg  
   - name: Get VM ID
     set_fact:
       created_vmid: "{{ created_msg | regex_search('VM (\\d*)', '\\1') | first | int }}"
+  - name: start container
+    community.general.proxmox:
+      vmid: '{{ vmid }}'
+      state: started
+    delegate_to: localhost
   - name: Execute ip a
     become_user: root
     become: true
