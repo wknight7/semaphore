@@ -26,6 +26,8 @@
     set_fact:
       created_vmid: "{{ created_msg | regex_search('VM (\\d*)', '\\1') | first | int }}"
   - name: Execute ip a
+    become_user: root
+    become: true
     ansible.builtin.command: /usr/bin/perl -T /usr/sbin/pct exec {{created_vmid}} ip a show dev eth0
     register: ip_output
   - name: Get IP
