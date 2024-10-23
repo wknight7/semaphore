@@ -28,5 +28,5 @@
     ansible.builtin.command: '/usr/bin/perl -T /usr/sbin/pct exec {{created_vmid}} ip a show dev eth0'
     register: ip_output
   - name: Get IP
-      set_fact:
-        created_ip: "{{ ip_output | regex_search('inet (\\d*\\.\\d*\\.\\d*\\.\\d*)/', '\\1')"
+    set_fact:
+      created_ip: "{{ ip_output | regex_search('inet (\\d*\\.\\d*\\.\\d*\\.\\d*)/', '\\1')"
