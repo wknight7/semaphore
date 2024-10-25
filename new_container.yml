@@ -32,7 +32,7 @@
       api_host: pve
       vmid: '{{ created_vmid }}'
       state: started
-    delegate_to: localhost
+#    delegate_to: wknight7@192.168.86.143
   - name: Execute ip a
     become_user: root
     become: true
