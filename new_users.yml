@@ -1,26 +1,40 @@
 ---
 
-- hosts: 
+- hosts: all 
   become: true 
   tasks:
 
-  - name: create wknight7 user
+  - name: create group media
+    tags: always
+    ansible.builtin.group:
+      name: media
+      state: present
+      gid: 1776
+
+  - name: create group docs 
+    tags: always
+    ansible.builtin.group:
+      name: docs
+      state: present
+      gid: 1787
+
+  - name: create bill user
     tags: always
     user: 
-      name: wknight7
-      groups: wknight7,adm,root,sudo
+      name: bill
+      groups: bill,adm,root,sudo,media,docs
 
-  - name: add ssh key for wknight7
+  - name: add ssh key for bill
     tags: always
     authorized_key: 
-      user: wknight7
-      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGEZl1LzTr1n5cSrp0+9UV/0kv/k7+qZle9vSh5o3wmM ansible"
+      user: bill
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOkdzXCp480fWqPU0pMP4BLtrSEG/V399GAXr+Y4ZTVK bill"
 
-  - name: add sudoers file for wknight7
+  - name: add sudoers file for bill
     tags: always
     copy:
-      src: /etc/sudoers.d/wknight7
-      dest: /etc/sudoers.d/wknight7
+      src: /etc/sudoers.d/bill
+      dest: /etc/sudoers.d/bill
       owner: root
       group: root
       mode: 0440
