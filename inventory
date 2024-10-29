@@ -22,9 +22,9 @@ calibre-web ansible_host=192.168.86.84 ansible_connection=ssh ansible_user=bill 
 photoprism ansible_host=192.168.86.42 ansible_connection=ssh ansible_user=bill ansible_ssh_private_key_file=~/.ssh/hal
 #gitea ansible_host=192.168.86.65 ansible_connection=ssh ansible_user=bill
 
-[Arrs]
-radarr ansible_host=192.168.86.79 ansible_connection=ssh ansible_user=bill ansible_ssh_private_key_file=~/.ssh/hal
-sonarr ansible_host=192.168.86.21 ansible_connection=ssh ansible_user=bill ansible_ssh_private_key_file=~/.ssh/hal
+#[Arrs]
+#radarr ansible_host=192.168.86.79 ansible_connection=ssh ansible_user=bill ansible_ssh_private_key_file=~/.ssh/hal
+#sonarr ansible_host=192.168.86.21 ansible_connection=ssh ansible_user=bill ansible_ssh_private_key_file=~/.ssh/hal
 
 #[workstations]
 #samsung_laptop ansible_host=192.168.86.94 ansible_connection=ssh ansible_user=bill ansible_ssh_private_key_file=~/.ssh/hal
