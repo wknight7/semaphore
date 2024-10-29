@@ -1,6 +1,6 @@
 [pvenodes]
 proxmox_ve ansible_host=192.168.86.143 ansible_connection=ssh ansible_user=bill ansible_ssh_private_key_file=~/.ssh/hal
-proxmox_backup ansible_host=192.168.86.33 ansible_connection=ssh ansible_user=bill ansible_ssh_private_key_file=~/.ssh/hal
+proxmox_backup ansible_host=192.168.86.33 ansible_connection=ssh ansible_user=hal ansible_ssh_private_key_file=~/.ssh/hal
 
 [pve_only]
 proxmox_ve ansible_host=192.168.86.143 ansible_connection=ssh ansible_user=hal ansible_ssh_private_key_file=~/.ssh/hal
