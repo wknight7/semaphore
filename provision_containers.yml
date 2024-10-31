@@ -66,6 +66,6 @@
       group: root
       mode: 0440
 
-    - name: Set timezone to America/New_York
-      community.general.timezone:
-        name: America/New_York
+  - name: Set timezone to America/New_York
+    community.general.timezone:
+      name: America/New_York
