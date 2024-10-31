@@ -1,6 +1,6 @@
 ---
 
-- hosts: new_ubuntu_machine.yml
+- hosts: new_machines
   become: true
   tasks:
 
@@ -24,6 +24,12 @@
       state: present
       gid: 1787
 
+  - name: create group lily 
+    tags: always
+    ansible.builtin.group:
+      name: lily
+      state: present
+
   - name: create bill user
     tags: always
     user: 
@@ -40,7 +46,8 @@
     tags: always
     user: 
       name: lily
-      groups: lily,sudo,media,docs
+      group: lily
+      groups: sudo,media,docs
 
   - name: add ssh key for bill
     tags: always
