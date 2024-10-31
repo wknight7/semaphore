@@ -27,5 +27,6 @@ ubuntu-desk-test ansible_host=192.168.86.50 ansible_connection=ssh ansible_user=
 #sonarr ansible_host=192.168.86.21 ansible_connection=ssh ansible_user=bill ansible_ssh_private_key_file=~/.ssh/bill
 
 #[workstations]
-#samsung_laptop ansible_host=192.168.86.94 ansible_connection=ssh ansible_user=bill ansible_ssh_private_key_file=~/.ssh/bill
-#dell_laptop ansible_host=192.168.86.86 ansible_connection=ssh ansible_user=bill ansible_ssh_private_key_file=~/.ssh/bill
+samsung_laptop ansible_host=192.168.86.94 ansible_connection=ssh ansible_user=bill ansible_ssh_private_key_file=~/.ssh/bill
+dell_laptop ansible_host=192.168.86.86 ansible_connection=ssh ansible_user=bill ansible_ssh_private_key_file=~/.ssh/bill
+desktop ansible_host=192.168.86.40 ansible_connection=ssh ansible_user=bill ansible_ssh_private_key_file=~/.ssh/hal
