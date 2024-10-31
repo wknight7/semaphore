@@ -20,7 +20,7 @@ calibre-web ansible_host=192.168.86.84 ansible_connection=ssh ansible_user=bill 
 photoprism ansible_host=192.168.86.42 ansible_connection=ssh ansible_user=bill ansible_ssh_private_key_file=~/.ssh/hal
 
 [new machines]
-ubuntu-desk-test ansible_host=
+ubuntu-desk-test ansible_host=192.168.86.50 ansible_connection=ssh ansible_user=bill ansible_ssh_private_key_file=~/.ssh/hal
 
 #[Arrs]
 #radarr ansible_host=192.168.86.79 ansible_connection=ssh ansible_user=bill ansible_ssh_private_key_file=~/.ssh/bill
