@@ -10,43 +10,11 @@
       upgrade: dist
     when: ansible_distribution in ["Debian", "Ubuntu"]
   
-  - name: create group media
-    tags: always
-    ansible.builtin.group:
-      name: media
-      state: present
-      gid: 1776
-
-  - name: create group docs 
-    tags: always
-    ansible.builtin.group:
-      name: docs
-      state: present
-      gid: 1787
-
-  - name: create bill user
-    tags: always
-    user: 
-      name: bill
-      groups: bill,adm,root,sudo,media,docs
-
   - name: create hal user
     tags: always
     user: 
       name: hal
       groups: sudo,media,docs
-
-  - name: create lily user
-    tags: always
-    user: 
-      name: lily
-      groups: sudo,media,docs
-
-  - name: add ssh key for bill
-    tags: always
-    authorized_key: 
-      user: bill
-      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOkdzXCp480fWqPU0pMP4BLtrSEG/V399GAXr+Y4ZTVK bill"
 
   - name: add ssh key for hal
     tags: always
@@ -62,52 +30,3 @@
       owner: root
       group: root
       mode: 0440
-
-  - name: add sudoers file for bill
-    tags: always
-    copy:
-      src: /etc/sudoers.d/bill
-      dest: /etc/sudoers.d/bill
-      owner: root
-      group: root
-      mode: 0440
-
-  - name: add known_hosts file for bill
-    tags: always
-    copy:
-      src: /home/bill/.ssh/known_hosts
-      dest: /home/bill/.ssh/known_hosts
-      owner: bill
-      group: bill
-      mode: 0600
-
-  - name: Generate an OpenSSH keypair for Bill
-    community.crypto.openssh_keypair:
-      path: /home/bill/.ssh/bill
-      type: ed25519
-      owner: bill
-      group: bill
-      comment: "bill new key"
-
-  - name: Install a list of packages
-    ansible.builtin.apt:
-      pkg:
-      - git
-      - software-properties-common
-      - mc
-      - cmatrix
-
-  - name: Install VS Code
-    community.general.snap:
-      name: code
-      classic: true 
-
-  - name: clone semaphore repository from git
-    git:
-      repo: git@github.com:wknight7/semaphore.git
-      dest: /home/bill/
-      clone: yes
-      update: yes 
-
-  
-
