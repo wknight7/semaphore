@@ -24,12 +24,6 @@
       state: present
       gid: 1787
 
-#  - name: create group lily 
-#    tags: always
-#    ansible.builtin.group:
-#      name: lily
-#      state: present
-
   - name: create bill user
     tags: always
     user: 
@@ -46,7 +40,6 @@
     tags: always
     user: 
       name: lily
-#      group: lily
       groups: sudo,media,docs
 
   - name: add ssh key for bill
