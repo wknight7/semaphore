@@ -9,4 +9,10 @@
       update_cache: yes
     changed_when: false
     when: ansible_distribution in ["Debian", "Ubuntu"]
+
+  - name: Set timezone to America/New_York
+    community.general.timezone:
+      name: America/New_York
+
+
   
