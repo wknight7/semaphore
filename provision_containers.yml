@@ -66,6 +66,22 @@
       group: root
       mode: 0440
 
+  - name: Recursively change ownership of hal's home directory
+    ansible.builtin.file:
+      path: /home/hal
+      state: directory
+      recurse: yes
+      owner: hal
+      group: hal
+
+  - name: Recursively change ownership of bill's home directory
+    ansible.builtin.file:
+      path: /home/bill
+      state: directory
+      recurse: yes
+      owner: bill
+      group: bill
+
   - name: Set timezone to America/New_York
     community.general.timezone:
       name: America/New_York
