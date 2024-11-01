@@ -9,6 +9,20 @@
       update_cache: yes
       upgrade: dist
     when: ansible_distribution in ["Debian", "Ubuntu"]
+
+  - name: create group media
+    tags: always
+    ansible.builtin.group:
+      name: media
+      state: present
+      gid: 1776
+
+  - name: create group docs 
+    tags: always
+    ansible.builtin.group:
+      name: docs
+      state: present
+      gid: 1787
   
   - name: create hal user
     tags: always
