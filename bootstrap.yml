@@ -15,6 +15,7 @@
     user: 
       name: hal
       groups: sudo,media,docs
+      uid: 1002
 
   - name: add ssh key for hal
     tags: always
