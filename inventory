@@ -20,7 +20,8 @@ calibre-web ansible_host=192.168.86.84
 photoprism ansible_host=192.168.86.42 
 
 [new_machines]
-ubuntu-desk-test ansible_host=192.168.86.50 
+#ubuntu-desk-test ansible_host=192.168.86.50 
+desktop ansible_host=192.168.86.40
 
 #[workstations]
 #samsung_laptop ansible_host=192.168.86.94 
