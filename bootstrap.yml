@@ -53,3 +53,11 @@
       recurse: yes
       owner: hal
       group: hal
+
+  - name: mount download directory
+    ansible.posix.mount:
+    src: 192.168.86.90:/mnt/ssd-files/home/bill/Downloads
+    path: /home/bill/Downloads
+    opts: rw,sync
+    state: mounted
+    fstype: nfs
