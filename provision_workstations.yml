@@ -19,6 +19,15 @@
       - mc
       - cmatrix
 
+  - name: add sudoers file for hal
+    tags: always
+    copy:
+      src: /home/bill/.SMBcredentials
+      dest: /home/bill/.SMBcredentials
+      owner: bill
+      group: bill
+      mode: 0644
+
   - name: Install VS Code
     community.general.snap:
       name: code
