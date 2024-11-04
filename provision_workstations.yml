@@ -11,7 +11,8 @@
     when: ansible_distribution in ["Debian", "Ubuntu"]
 
   - name: add packages
-    apt:
+    ansible.builtin.apt:
+      apt:
       - git
       - nfs-common
       - software-properties-common
