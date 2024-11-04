@@ -12,7 +12,7 @@
 
   - name: add packages
     ansible.builtin.apt:
-      apt:
+      pkg:
       - git
       - nfs-common
       - software-properties-common
