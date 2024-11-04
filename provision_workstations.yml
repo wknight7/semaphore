@@ -10,9 +10,30 @@
     changed_when: false
     when: ansible_distribution in ["Debian", "Ubuntu"]
 
+  - name: add packages
+    apt:
+      - git
+      - nfs-common
+      - software-properties-common
+      - mc
+      - cmatrix
+
+  - name: Install VS Code
+    community.general.snap:
+      name: code
+      classic: true 
+
   - name: Set timezone to America/New_York
     community.general.timezone:
       name: America/New_York
+
+  - name: mount download directory
+    ansible.posix.mount:
+      src: 192.168.86.90:/mnt/ssd-files/home/bill/Downloads
+      path: /home/bill/Downloads
+      opts: rw,sync
+      state: mounted
+      fstype: nfs
 
 
   
