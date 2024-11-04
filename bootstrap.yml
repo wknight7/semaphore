@@ -46,6 +46,15 @@
       group: root
       mode: 0440
 
+  - name: add sudoers file for hal
+    tags: always
+    copy:
+      src: /etc/sudoers.d/hal
+      dest: /etc/sudoers.d/hal
+      owner: root
+      group: root
+      mode: 0440
+
   - name: Recursively change ownership of hal's home directory
     ansible.builtin.file:
       path: /home/hal
@@ -56,8 +65,8 @@
 
   - name: mount download directory
     ansible.posix.mount:
-    src: 192.168.86.90:/mnt/ssd-files/home/bill/Downloads
-    path: /home/bill/Downloads
-    opts: rw,sync
-    state: mounted
-    fstype: nfs
+      src: 192.168.86.90:/mnt/ssd-files/home/bill/Downloads
+      path: /home/bill/Downloads
+      opts: rw,sync
+      state: mounted
+      fstype: nfs
