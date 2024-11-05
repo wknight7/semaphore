@@ -19,7 +19,7 @@
       - mc
       - cmatrix
 
-  - name: add sudoers file for hal
+  - name: add smd cred file for bill
     tags: always
     copy:
       src: /home/bill/.SMBcredentials
