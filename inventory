@@ -18,11 +18,11 @@ cloudflared ansible_host=192.168.86.81
 paperless ansible_host=192.168.86.93 
 calibre-web ansible_host=192.168.86.84 
 photoprism ansible_host=192.168.86.42 
+ansible ansible_host=192.168.86.83
 
 [new_machines]
 #ubuntu-desk-test ansible_host=192.168.86.50 
 #desktop ansible_host=192.168.86.40
-ansible ansible_host=192.168.86.83
 #lily ansible_host=192.168.86.55
 
 #[workstations]
