@@ -60,8 +60,6 @@
     ansible.posix.mount:
       src: "{{ item.src }}"
       path: "{{ item.path }}"
-      owner: "{{item.owner}}"
-      group: "{{item.group}}"
       opts: rw,sync
       state: mounted
       fstype: nfs
