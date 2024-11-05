@@ -39,8 +39,8 @@
 
   - name: mount download directory
     ansible.posix.mount:
-      src: 192.168.86.90:/mnt/ssd-files/home/bill/Downloads
-      path: /home/bill/Downloads
+      src: 192.168.86.90:/mnt/ssd-files/home/bill/Desktop
+      path: /home/bill/Desktop
       opts: rw,sync
       state: mounted
       fstype: nfs
