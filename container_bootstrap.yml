@@ -28,7 +28,7 @@
     tags: always
     user: 
       name: bill
-      groups: bill,adm,root,sudo,media,docs
+      groups: root,sudo,media,docs
 
   - name: create hal user
     tags: always
