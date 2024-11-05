@@ -37,13 +37,18 @@
     community.general.timezone:
       name: America/New_York
 
-  - name: mount download directory
+  - name: mount nfs share directories
     ansible.posix.mount:
       src: 192.168.86.90:/mnt/ssd-files/home/bill/Desktop
       path: /home/bill/Desktop
       opts: rw,sync
       state: mounted
       fstype: nfs
-
+    ansible.posix.mount:
+      src: 192.168.86.90:/mnt/ssd-files/home/bill/Downloads
+      path: /home/bill/Downloads
+      opts: rw,sync
+      state: mounted
+      fstype: nfs
 
   
