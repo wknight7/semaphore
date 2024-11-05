@@ -49,13 +49,12 @@
       
   - name: Create bill home directories 
     ansible.builtin.file:
-      path: "{{ item }}"
+      path: "{{ item.dest }}"      
+      owner: "{{item.owner}}"
+      group: "{{item.group}}"
       state: directory
-      mode: '0755'
-      owner: bill
-      group: media
     loop:
-      - /home/bill/Media
+      -  { dest: '/home/bill/Media', owner: 'bill', group: 'media' }
 
   - name: mount nfs share directories
     ansible.posix.mount:
