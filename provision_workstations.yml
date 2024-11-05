@@ -36,6 +36,14 @@
   - name: Set timezone to America/New_York
     community.general.timezone:
       name: America/New_York
+      
+  - name: Create bill home directories 
+    ansible.builtin.file:
+      path: "{{ item }}"
+      state: directory
+      mode: '0755'
+    loop:
+      - /home/bill/Media
 
   - name: mount nfs share directories
     ansible.posix.mount:
@@ -47,6 +55,30 @@
     ansible.posix.mount:
       src: 192.168.86.90:/mnt/ssd-files/home/bill/Downloads
       path: /home/bill/Downloads
+      opts: rw,sync
+      state: mounted
+      fstype: nfs
+    ansible.posix.mount:
+      src: 192.168.86.90:/mnt/ssd-files/home/bill/Public
+      path: /home/bill/Public
+      opts: rw,sync
+      state: mounted
+      fstype: nfs
+    ansible.posix.mount:
+      src: 192.168.86.90:/mnt/ssd-files/home/bill/Templates
+      path: /home/bill/Templates
+      opts: rw,sync
+      state: mounted
+      fstype: nfs
+    ansible.posix.mount:
+      src: 192.168.86.90:/mnt/ssd-files/home/bill/Documents
+      path: /home/bill/Documents
+      opts: rw,sync
+      state: mounted
+      fstype: nfs
+    ansible.posix.mount:
+      src: 192.168.86.90:/mnt/Data/multimedia/media
+      path: /home/bill/Media
       opts: rw,sync
       state: mounted
       fstype: nfs
