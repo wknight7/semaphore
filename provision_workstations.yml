@@ -36,12 +36,24 @@
   - name: Set timezone to America/New_York
     community.general.timezone:
       name: America/New_York
+
+  - name: Recursively remove directories
+    ansible.builtin.file:
+      path: "{{ item }}"
+      state: absent
+    loop:
+      - /home/bill/Music
+      - /home/bill/Pictures
+      - /home/bill/Templates
+      - /home/bill/Videos
       
   - name: Create bill home directories 
     ansible.builtin.file:
       path: "{{ item }}"
       state: directory
       mode: '0755'
+      owner: bill
+      group: media
     loop:
       - /home/bill/Media
 
@@ -64,12 +76,7 @@
       opts: rw,sync
       state: mounted
       fstype: nfs
-    ansible.posix.mount:
-      src: 192.168.86.90:/mnt/ssd-files/home/bill/Templates
-      path: /home/bill/Templates
-      opts: rw,sync
-      state: mounted
-      fstype: nfs
+    
     ansible.posix.mount:
       src: 192.168.86.90:/mnt/ssd-files/home/bill/Documents
       path: /home/bill/Documents
