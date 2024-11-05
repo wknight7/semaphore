@@ -58,35 +58,14 @@
 
   - name: mount nfs share directories
     ansible.posix.mount:
-      src: 192.168.86.90:/mnt/ssd-files/home/bill/Desktop
-      path: /home/bill/Desktop
+      src: "{{ item.src }}"
+      path: "{{ item.path }}"
       opts: rw,sync
       state: mounted
       fstype: nfs
-    ansible.posix.mount:
-      src: 192.168.86.90:/mnt/ssd-files/home/bill/Downloads
-      path: /home/bill/Downloads
-      opts: rw,sync
-      state: mounted
-      fstype: nfs
-    ansible.posix.mount:
-      src: 192.168.86.90:/mnt/ssd-files/home/bill/Public
-      path: /home/bill/Public
-      opts: rw,sync
-      state: mounted
-      fstype: nfs
-    
-    ansible.posix.mount:
-      src: 192.168.86.90:/mnt/ssd-files/home/bill/Documents
-      path: /home/bill/Documents
-      opts: rw,sync
-      state: mounted
-      fstype: nfs
-    ansible.posix.mount:
-      src: 192.168.86.90:/mnt/Data/multimedia/media
-      path: /home/bill/Media
-      opts: rw,sync
-      state: mounted
-      fstype: nfs
-
-  
+    loop:
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Desktop', path: '/home/bill/Desktop' }
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Downloads', path: '/home/bill/Downloads' }
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Public', path: '/home/bill/Public' }
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Documents', path: '/home/bill/Documents' }
+      - { src: '192.168.86.90:/mnt/Data/multimedia/media', path: '/home/bill/Media' }
