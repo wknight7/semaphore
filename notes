@@ -1,1 +1,1 @@
-ansible-playbook -u root -k 
+ansible-playbook -u root -k bootstrap_containers.yml
