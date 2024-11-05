@@ -1,0 +1,73 @@
+---
+
+- hosts: new_machines
+  become: true
+  tasks:
+
+  - name: update repo cache
+    package:
+      update_cache: yes
+    changed_when: false
+    when: ansible_distribution in ["Debian", "Ubuntu"]
+
+  - name: add packages
+    ansible.builtin.apt:
+      pkg:
+      - git
+      - nfs-common
+      - software-properties-common
+      - mc
+      - cmatrix
+
+  - name: add smd cred file for bill
+    tags: always
+    copy:
+      src: /home/bill/.SMBcredentials
+      dest: /home/bill/.SMBcredentials
+      owner: bill
+      group: bill
+      mode: 0644
+
+  - name: Install VS Code
+    community.general.snap:
+      name: code
+      classic: true 
+
+  - name: Set timezone to America/New_York
+    community.general.timezone:
+      name: America/New_York
+
+  - name: Recursively remove directories
+    ansible.builtin.file:
+      path: "{{ item }}"
+      state: absent
+    loop:
+      - /home/bill/Music
+      - /home/bill/Pictures
+      - /home/bill/Templates
+      - /home/bill/Videos
+      
+  - name: Create bill home directories 
+    ansible.builtin.file:
+      path: "{{ item.dest }}"      
+      owner: "{{item.owner}}"
+      group: "{{item.group}}"
+      state: directory
+    loop:
+      -  { dest: '/home/bill/Media', owner: 'bill', group: 'media' }
+
+  - name: mount nfs share directories
+    ansible.posix.mount:
+      src: "{{ item.src }}"
+      path: "{{ item.path }}"
+      owner: "{{item.owner}}"
+      group: "{{item.group}}"
+      opts: rw,sync
+      state: mounted
+      fstype: nfs
+    loop:
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Desktop', path '/home/bill/Desktop' }
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Downloads', path '/home/bill/Downloads' }
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Public', path '/home/bill/Public' }
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Documents', path '/home/bill/Documents' }
+      - { src: '192.168.86.90:/mnt/Data/multimedia/media', path '/home/bill/Media' }
