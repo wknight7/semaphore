@@ -100,6 +100,6 @@
       state: mounted
       fstype: cifs
     loop:
-      - { src: '192.168.86.90/consume', path: '/home/bill/paperless/consume' }
-      - { src: '192.168.86.90/data', path: '/home/bill/paperless/data'}
-      - { src: '192.168.86.90/media', path: '/home/bill/paperless/media' }
+      - { src: '//192.168.86.90/consume', path: '/home/bill/paperless/consume' }
+      - { src: '//192.168.86.90/data', path: '/home/bill/paperless/data'}
+      - { src: '//192.168.86.90/media', path: '/home/bill/paperless/media' }
