@@ -47,7 +47,7 @@
       - /home/bill/Templates
       - /home/bill/Videos
 
-  - add sudoers file for bill
+  - name: add sudoers file for bill
     tags: always
     copy:
       src: /etc/sudoers.d/bill
