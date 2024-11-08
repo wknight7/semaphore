@@ -18,6 +18,7 @@
       - software-properties-common
       - mc
       - cmatrix
+      - cifs-utils
 
   - name: add smb cred file for bill
     tags: always
