@@ -62,7 +62,7 @@
         type: ed25519
         owner: bill
         group: bill
-        comment: "bill"
+        comment: "bill {{ ansible_facts['nodename'] }} "
 
   - name: Create bill home directories 
     ansible.builtin.file:
