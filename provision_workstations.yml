@@ -19,7 +19,7 @@
       - mc
       - cmatrix
 
-  - name: add smd cred file for bill
+  - name: add smb cred file for bill
     tags: always
     copy:
       src: /home/bill/.SMBcredentials
@@ -46,7 +46,16 @@
       - /home/bill/Pictures
       - /home/bill/Templates
       - /home/bill/Videos
-      
+
+  - add sudoers file for bill
+    tags: always
+    copy:
+      src: /etc/sudoers.d/bill
+      dest: /etc/sudoers.d/bill
+      owner: root
+      group: root
+      mode: 0440
+
   - name: Create bill home directories 
     ansible.builtin.file:
       path: "{{ item.dest }}"      
@@ -69,3 +78,15 @@
       - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Public', path: '/home/bill/Public' }
       - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Documents', path: '/home/bill/Documents' }
       - { src: '192.168.86.90:/mnt/Data/multimedia/media', path: '/home/bill/Media' }
+
+  - name: mount smb share directories
+    ansible.posix.mount:
+      src: "{{ item.src }}"
+      path: "{{ item.path }}"
+      opts: rw,sync
+      state: mounted
+      fstype: smb
+    loop:
+      - { src: '192.168.86.90/consume', path: '/home/bill/paperless/consume' }
+      - { src: '192.168.86.90/data', path: '/home/bill/paperless/data'}
+      - { src: '192.168.86.90/media', path: '/home/bill/paperless/media' }
