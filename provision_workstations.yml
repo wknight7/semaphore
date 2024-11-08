@@ -95,9 +95,9 @@
     ansible.posix.mount:
       src: "{{ item.src }}"
       path: "{{ item.path }}"
-      opts: rw,sync
+      opts: rw,sync,vers=3.0,credentials=/home/bill/.SMBcredentials,uid=1000,gid=1787
       state: mounted
-      fstype: smb
+      fstype: cifs
     loop:
       - { src: '192.168.86.90/consume', path: '/home/bill/paperless/consume' }
       - { src: '192.168.86.90/data', path: '/home/bill/paperless/data'}
