@@ -35,7 +35,7 @@ samsung_laptop ansible_host=192.168.86.94
 [desktop]
 #desktop ansible_host=192.168.86.40 
 
-[non-laptops]
+[non_laptops]
 proxmox_ve ansible_host=192.168.86.143 
 proxmox_backup ansible_host=192.168.86.33 
 plex ansible_host=192.168.86.97
