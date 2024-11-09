@@ -57,13 +57,13 @@
       group: root
       mode: 0440
   
-  - name: Generate an OpenSSH keypair for Bill
-    community.crypto.openssh_keypair:
-      path: /home/bill/.ssh/bill
-      type: ed25519
-      owner: bill
-      group: bill
-      comment: "bill {{ ansible_facts['nodename'] }} "
+#  - name: Generate an OpenSSH keypair for Bill
+#    community.crypto.openssh_keypair:
+#      path: /home/bill/.ssh/bill
+#      type: ed25519
+#      owner: bill
+#      group: bill
+#      comment: "bill {{ ansible_facts['nodename'] }} "
 
   - name: Create bill home directories 
     ansible.builtin.file:
