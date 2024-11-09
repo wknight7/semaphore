@@ -99,7 +99,8 @@
       opts: "rw,sync,vers=3.0,credentials=/home/bill/.SMBcredentials,uid=1000,gid=1787"
       state: mounted
       fstype: cifs
+      domain: "{{ item:domain }}"
     loop:
-      - { src: '//192.168.86.90/consume', path: '/home/bill/paperless/consume' }
-      - { src: '//192.168.86.90/data', path: '/home/bill/paperless/data'}
-      - { src: '//192.168.86.90/media', path: '/home/bill/paperless/media' }
+      - { src: '//192.168.86.90/consume', path: '/home/bill/paperless/consume', domain: '192.168.86.90' }
+      - { src: '//192.168.86.90/data', path: '/home/bill/paperless/data', domain: '192.168.86.90' }
+      - { src: '//192.168.86.90/media', path: '/home/bill/paperless/media', domain: '192.168.86.90' }
