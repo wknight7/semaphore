@@ -96,7 +96,7 @@
     ansible.posix.mount:
       src: "{{ item.src }}"
       path: "{{ item.path }}"
-      opts: rw,sync,vers=3.0,credentials=/home/bill/.SMBcredentials,uid=1000,gid=1787
+      opts: "rw,sync,vers=3.0,credentials=/home/bill/.SMBcredentials,uid=1000,gid=1787"
       state: mounted
       fstype: cifs
     loop:
