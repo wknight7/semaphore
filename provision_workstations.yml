@@ -47,6 +47,10 @@
       - /home/bill/Pictures
       - /home/bill/Templates
       - /home/bill/Videos
+      - /home/lily/Music
+      - /home/lily/Pictures
+      - /home/lily/Templates
+      - /home/lily/Videos
 
   - name: add sudoers file for bill
     tags: always
@@ -65,7 +69,18 @@
 #      group: bill
 #      comment: "bill {{ ansible_facts['nodename'] }} "
 
-  - name: Create bill home directories 
+  - name: fetch remote public key
+    community.crypto.openssl_publickey_info:
+      path: /home/bill/.ssh/bill
+    register: bill_ssh
+
+  - name: append new key to authorized file
+    ansible.builtin.lineinfile: 
+      path: /home/bill/test/test_auth_file
+      insertafter: EOF
+      line: bill_ssh
+
+  - name: Create bill & lily home directories 
     ansible.builtin.file:
       path: "{{ item.dest }}"      
       owner: "{{item.owner}}"
@@ -77,6 +92,11 @@
       - { dest: 'home/bill/paperless/media', owner: 'bill', group: 'docs' }
       - { dest: 'home/bill/paperless/data', owner: 'bill', group: 'docs' }
       - { dest: 'home/bill/paperless/consume', owner: 'bill', group: 'docs' }
+      - { dest: '/home/lily/Media', owner: 'lily', group: 'media' }
+      - { dest: 'home/lily/paperless', owner: 'lily', group: 'docs' }
+      - { dest: 'home/lily/paperless/media', owner: 'lily', group: 'docs' }
+      - { dest: 'home/lily/paperless/data', owner: 'lily', group: 'docs' }
+      - { dest: 'home/lily/paperless/consume', owner: 'lily', group: 'docs' }
 
   - name: mount nfs share directories
     ansible.posix.mount:
@@ -91,6 +111,10 @@
       - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Public', path: '/home/bill/Public' }
       - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Documents', path: '/home/bill/Documents' }
       - { src: '192.168.86.90:/mnt/Data/multimedia/media', path: '/home/bill/Media' }
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Desktop', path: '/home/lily/Desktop' }
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Downloads', path: '/home/lily/Downloads' }
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Documents', path: '/home/lily/Documents' }
+      - { src: '192.168.86.90:/mnt/Data/multimedia/media', path: '/home/lily/Media' }
 
   - name: mount smb share directories
     ansible.posix.mount:
