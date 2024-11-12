@@ -31,6 +31,12 @@
       groups: sudo,media,docs
       uid: 1002
 
+  - name: create user lily
+    user: 
+      name: lily
+      groups: media,docs
+      uid: 1003
+
   - name: add ssh key for hal
     tags: always
     authorized_key: 
