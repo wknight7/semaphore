@@ -69,16 +69,16 @@
 #      group: bill
 #      comment: "bill {{ ansible_facts['nodename'] }} "
 
-  - name: fetch remote public key
-    community.crypto.openssl_publickey_info:
-      path: /home/bill/.ssh/bill
-    register: bill_ssh
+#  - name: fetch remote public key
+#    community.crypto.openssl_publickey_info:
+#      path: /home/bill/.ssh/bill
+#    register: bill_ssh
 
-  - name: append new key to authorized file
-    ansible.builtin.lineinfile: 
-      path: /home/bill/test/test_auth_file
-      insertafter: EOF
-      line: bill_ssh
+ # - name: append new key to authorized file
+ #   ansible.builtin.lineinfile: 
+ #     path: /home/bill/test/test_auth_file
+ #     insertafter: EOF
+ #     line: bill_ssh
 
   - name: Create bill & lily home directories 
     ansible.builtin.file:
