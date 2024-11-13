@@ -1,10 +1,11 @@
 ---
 
-- hosts: new_machines
+- hosts: test
   become: true
   tasks:
 
   - name: update systems
+    tags: always
     package:
       update_cache: yes
       upgrade: dist
@@ -32,10 +33,19 @@
       uid: 1002
 
   - name: create user lily
+    tags: workstations
     user: 
       name: lily
       groups: media,docs
       uid: 1003
+
+  - name: create user bill
+    tags: lxc
+    user:
+      name: bill
+      password: $6$YKsZbl1tRGp7V22w$hPkvWuJCgktUhaXOAWcRKl8Ouk4z8LXSD0tQBRvApWAEf82xGvxpHjuL6rjKB.1eB5aNSBXnVXNIDWrbFtFeg1
+      groups: media,docs,sudo
+      uid: 1000
 
   - name: add ssh key for hal
     tags: always
@@ -43,6 +53,12 @@
       user: hal
       key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDgyiZ4tMW4B6bJ6VNep4e9grqu0Mc8JbDoZsFs3Kd1EYPKMt/p2oS0nH8BeqVgYVZ34AW4Yw42DSYza1upJ7vOOwN0YpjkXoXhW9B9u5caS9IfRjSa4nVCX3eXRY6XpMWfX25BxTZNxI8BT8QihIhX7MDFSO4d/93YcBwnhXenLIe1Mf5Od1B7qbr2j7V4w2VLt1UeRrhrlPnYFawhdm0kllGNL9oFaU0QEvjaect3wBVKVybhDUGIeo5r3Gkt6SctYc69XlJyufWI6eEfptP19rPhTMJzP4W3gIKqNcs/XeiuUeUoWkpLC8Od4DUcl1+VbbIAIX/yjj4MVHk48Uvhpvp3VZ2EcDxLTxV4M6ZQTsTno40w880CJ3uqLFDycjdvBhw1JNQZ4VCLAKi6i3JeH3Gvo8M1a9QNMBbk7/g1qm3mZ3NWLaTltXdnrr/X+/sCVUNWdEaH7fektUMWTl/YtqeivPr4nHDnaJseKxkRwjmemX02YZDS/i++12WwW4c= bill@semaphore"
  
+  - name: add ssh key for bill
+    tags: always
+    authorized_key: 
+      user: bill
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOkdzXCp480fWqPU0pMP4BLtrSEG/V399GAXr+Y4ZTVK bill"
+
   - name: add sudoers file for hal
     tags: always
     copy:
@@ -52,16 +68,17 @@
       group: root
       mode: 0440
 
-  - name: add sudoers file for hal
+  - name: add sudoers file for bill
     tags: always
     copy:
-      src: /etc/sudoers.d/hal
-      dest: /etc/sudoers.d/hal
+      src: /etc/sudoers.d/bill
+      dest: /etc/sudoers.d/bill
       owner: root
       group: root
       mode: 0440
 
   - name: Recursively change ownership of hal's home directory
+    tags: always
     ansible.builtin.file:
       path: /home/hal
       state: directory
@@ -69,3 +86,25 @@
       owner: hal
       group: hal
 
+  - name: Recursively change ownership of bill's home directory
+    tags: always
+    ansible.builtin.file:
+      path: /home/bill
+      state: directory
+      recurse: yes
+      owner: bill
+      group: bill
+
+  - name: Set timezone to America/New_York
+    tahs: lxc
+    community.general.timezone:
+      name: America/New_York
+
+  - name: add smb cred file for bill
+    tags: always
+    copy:
+      src: /home/bill/.SMBcredentials
+      dest: /home/bill/.SMBcredentials
+      owner: bill
+      group: bill
+      mode: 0644
