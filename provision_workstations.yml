@@ -5,6 +5,7 @@
   tasks:
 
   - name: update repo cache
+    tags: always
     package:
       update_cache: yes
     changed_when: false
@@ -18,7 +19,6 @@
       - software-properties-common
       - mc
       - cmatrix
-      - cifs-utils
 
   - name: add smb cred file for bill
     tags: always
@@ -30,6 +30,7 @@
       mode: 0644
 
   - name: Install VS Code
+    tags: workstations
     community.general.snap:
       name: code
       classic: true 
@@ -39,6 +40,7 @@
       name: America/New_York
 
   - name: Recursively remove directories
+    tags: workstations
     ansible.builtin.file:
       path: "{{ item }}"
       state: absent
@@ -61,13 +63,14 @@
       group: root
       mode: 0440
   
-#  - name: Generate an OpenSSH keypair for Bill
-#    community.crypto.openssh_keypair:
-#      path: /home/bill/.ssh/bill
-#      type: ed25519
-#      owner: bill
-#      group: bill
-#      comment: "bill {{ ansible_facts['nodename'] }} "
+  - name: Generate an OpenSSH keypair for Bill
+    tags: workstations
+    community.crypto.openssh_keypair:
+      path: /home/bill/.ssh/bill
+      type: ed25519
+      owner: bill
+      group: bill
+      comment: "bill {{ ansible_facts['nodename'] }} "
 
 #  - name: fetch remote public key
 #    community.crypto.openssl_publickey_info:
@@ -81,24 +84,26 @@
  #     line: bill_ssh
 
   - name: Create bill & lily home directories 
+    tags: workstations
     ansible.builtin.file:
       path: "{{ item.dest }}"      
       owner: "{{item.owner}}"
       group: "{{item.group}}"
       state: directory
     loop:
-      - { dest: '/home/bill/Media', owner: 'bill', group: 'media' }
+      - { dest: 'home/bill/Media', owner: 'bill', group: 'media' }
       - { dest: 'home/bill/paperless', owner: 'bill', group: 'docs' }
       - { dest: 'home/bill/paperless/media', owner: 'bill', group: 'docs' }
       - { dest: 'home/bill/paperless/data', owner: 'bill', group: 'docs' }
       - { dest: 'home/bill/paperless/consume', owner: 'bill', group: 'docs' }
-      - { dest: '/home/lily/Media', owner: 'lily', group: 'media' }
+      - { dest: 'home/lily/Media', owner: 'lily', group: 'media' }
       - { dest: 'home/lily/paperless', owner: 'lily', group: 'docs' }
       - { dest: 'home/lily/paperless/media', owner: 'lily', group: 'docs' }
       - { dest: 'home/lily/paperless/data', owner: 'lily', group: 'docs' }
       - { dest: 'home/lily/paperless/consume', owner: 'lily', group: 'docs' }
 
   - name: mount nfs share directories
+    tags: workstations
     ansible.posix.mount:
       src: "{{ item.src }}"
       path: "{{ item.path }}"
