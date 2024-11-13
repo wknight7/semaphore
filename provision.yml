@@ -20,14 +20,7 @@
       - mc
       - cmatrix
 
-  - name: add smb cred file for bill
-    tags: always
-    copy:
-      src: /home/bill/.SMBcredentials
-      dest: /home/bill/.SMBcredentials
-      owner: bill
-      group: bill
-      mode: 0644
+
 
   - name: Install VS Code
     tags: workstations
@@ -36,6 +29,7 @@
       classic: true 
 
   - name: Set timezone to America/New_York
+    tags: always
     community.general.timezone:
       name: America/New_York
 
@@ -54,15 +48,6 @@
       - /home/lily/Templates
       - /home/lily/Videos
 
-  - name: add sudoers file for bill
-    tags: always
-    copy:
-      src: /etc/sudoers.d/bill
-      dest: /etc/sudoers.d/bill
-      owner: root
-      group: root
-      mode: 0440
-  
   - name: Generate an OpenSSH keypair for Bill
     tags: workstations
     community.crypto.openssh_keypair:
