@@ -66,5 +66,5 @@ photoprism ansible_host=192.168.86.42
 ansible ansible_host=192.168.86.83
 
 [test]
-ubuntu-desk-test ansible_host=192.168.86.50
+ubuntu-desk-test ansible_host=192.168.86.55
 test1 ansible_host=192.168.86.99
