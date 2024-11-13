@@ -96,7 +96,7 @@
       group: bill
 
   - name: Set timezone to America/New_York
-    tahs: lxc
+    tags: lxc
     community.general.timezone:
       name: America/New_York
 
