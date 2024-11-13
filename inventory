@@ -67,4 +67,4 @@ ansible ansible_host=192.168.86.83
 
 [test]
 ubuntu-desk-test ansible_host=192.168.86.55
-test1 ansible_host=192.168.86.99
+test1 ansible_host=192.168.86.50
