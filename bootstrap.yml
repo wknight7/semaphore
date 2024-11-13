@@ -12,10 +12,12 @@
     when: ansible_distribution in ["Debian", "Ubuntu"]
 
   - name: determine available groups
+    tags: always
     getent:
       database: group
 
   - name: determine available users
+    tags: always
     getent:
       database: passwd
 
@@ -42,6 +44,7 @@
     loop: "{{ ansible_facts.getent_group | dict2items }}"
 
   - name: set group with random gid when 1776 already in use
+    tags: always
     group:
       name: media
       gid: "{{ random_num }}"
@@ -51,6 +54,7 @@
     loop: "{{ ansible_facts.getent_group | dict2items }}"
 
   - name: set group with random gid when 1787 already in use
+    tags: always
     group:
       name: docs
       gid: "{{ random_num }}"
@@ -60,12 +64,14 @@
     loop: "{{ ansible_facts.getent_group | dict2items }}"
 
   - name: set fact when hal exists
+    tags: always
     set_fact:
       user_exists: true
     when: '"hal" in item.key'
     loop: "{{ ansible_facts.getent_passwd | dict2items }}"
 
   - name: set fact when hal does not exists
+    tags: always
     set_fact:
       user_exists: false
     when: '"hal" not in item.key'
@@ -83,6 +89,7 @@
     loop: "{{ ansible_facts.getent_passwd | dict2items }}"
 
   - name: set user hal with random uid when 1002 not available
+    tags: always
     user:
       name: hal
       groups: sudo,media,docs
