@@ -30,14 +30,14 @@
     user: 
       name: hal
       groups: sudo,media,docs
-      uid: 1002
+      uid: 1001
 
   - name: create user lily
     tags: workstations
     user: 
       name: lily
       groups: media,docs
-      uid: 1003
+      uid: 1002
 
   - name: create user bill
     tags: lxc
