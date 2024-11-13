@@ -66,10 +66,10 @@
     loop: "{{ ansible_facts.getent_passwd | dict2items }}"
 
   - name: set fact when hal does not exists
-      set_fact:
-        user_exists: false
-      when: '"hal" not in item.key'
-      loop: "{{ ansible_facts.getent_passwd | dict2items }}"
+    set_fact:
+      user_exists: false
+    when: '"hal" not in item.key'
+    loop: "{{ ansible_facts.getent_passwd | dict2items }}"
   
   - name: create hal user if missing
     tags: always
