@@ -11,16 +11,19 @@
     changed_when: false
     when: ansible_distribution in ["Debian", "Ubuntu"]
 
-  - name: add packages
+  - name: add packages all
+    tags: always
     ansible.builtin.apt:
-      pkg:
-      - git
+      pkg:      
       - nfs-common
       - software-properties-common
-      - mc
+      - mc      
+
+  - name: add packages all
+    tags: workstations
+    ansible.builtin.apt:
+      - git
       - cmatrix
-
-
 
   - name: Install VS Code
     tags: workstations
