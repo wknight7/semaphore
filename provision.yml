@@ -107,6 +107,16 @@
       - { src: '192.168.86.90:/mnt/Data/multimedia/media', path: '/home/lily/Media' }
       - { src: '192.168.86.90:/mnt/ssd-files/paperless', path: '/home/bill/paperless' }
 
+  - name: Create bill & lily home directories 
+    tags: media
+    ansible.builtin.file:
+      path: "{{ item.dest }}"      
+      owner: "{{item.owner}}"
+      group: "{{item.group}}"
+      state: directory
+    loop:
+      - { dest: 'mnt/multimedia', owner: 'bill', group: 'media' }
+
   - name: mount nfs share directories for media managers
     tags: media
     ansible.posix.mount:
