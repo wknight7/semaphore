@@ -111,7 +111,7 @@
       - { src: '192.168.86.90:/mnt/Data/multimedia/media', path: '/home/lily/Media' }
       - { src: '192.168.86.90:/mnt/ssd-files/paperless', path: '/home/bill/paperless' }
 
-  - name: Create bill & lily home directories 
+  - name: Create multimedia directory 
     tags: media
     ansible.builtin.file:
       path: "{{ item.dest }}"      
