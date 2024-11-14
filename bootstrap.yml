@@ -45,6 +45,7 @@
       name: bill
       password: $6$YKsZbl1tRGp7V22w$hPkvWuJCgktUhaXOAWcRKl8Ouk4z8LXSD0tQBRvApWAEf82xGvxpHjuL6rjKB.1eB5aNSBXnVXNIDWrbFtFeg1
       groups: media,docs,sudo
+      shell: /bin/bashy
       uid: 1000
 
   - name: add ssh key for hal
