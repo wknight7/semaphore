@@ -31,6 +31,18 @@
       - { src: '192.168.86.90:/mnt/Data/multimedia/media', path: '/home/lily/Media' }
       - { src: '192.168.86.90:/mnt/ssd-files/paperless', path: '/home/bill/paperless' }
 
+  - name: mount nfs share directories for media containers
+    tags: media
+    ansible.posix.mount:
+      src: "{{ item.src }}"
+      path: "{{ item.path }}"
+      opts: rw,sync
+      state: mounted
+      fstype: nfs
+    loop:
+      - { src: '192.168.86.90:/mnt/Data/multimedia', path: '/mnt/multimedia' }
+
+
   - name: umount share directories
     tags: workstations
     ansible.builtin.lineinfile:
