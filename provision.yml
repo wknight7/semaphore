@@ -114,7 +114,7 @@
   - name: Create multimedia directory 
     tags: media
     ansible.builtin.file:
-      path: mnt/multimedia      
+      path: /mnt/multimedia      
       owner: bill
       group: media
       state: directory
