@@ -19,7 +19,7 @@
       - software-properties-common
       - mc      
 
-  - name: add packages all
+  - name: add packages workstations
     tags: workstations
     ansible.builtin.apt:
       - git
