@@ -34,7 +34,7 @@
   - name: umount share directories
     tags: workstations
     ansible.builtin.lineinfile:
-      path: /etc/fstab      
+      path: /etc/fstab
       state: absent
       line: '//192.168.86.90/data /home/wknight7/paperless/data cifs vers=3.0,credentials=/home/wknight7/.SMBcredentials,uid=1000,gid=1000 0 0'
       line: '//192.168.86.90/media /home/wknight7/paperless/media cifs vers=3.0,credentials=/home/wknight7/.SMBcredentials,uid=1000,gid=1000 0 0'
