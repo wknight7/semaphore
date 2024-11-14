@@ -1,0 +1,53 @@
+---
+
+- hosts: laptops
+  become: true
+  tasks:
+
+  - name: update repo cache
+    tags: always
+    package:
+      update_cache: yes
+    changed_when: false
+    when: ansible_distribution in ["Debian", "Ubuntu"]
+
+  - name: mount nfs share directories
+    tags: workstations
+    ansible.posix.mount:
+      src: "{{ item.src }}"
+      path: "{{ item.path }}"
+      opts: rw,sync
+      state: mounted
+      fstype: nfs
+    loop:
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Desktop', path: '/home/bill/Desktop' }
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Downloads', path: '/home/bill/Downloads' }
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Public', path: '/home/bill/Public' }
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Documents', path: '/home/bill/Documents' }
+      - { src: '192.168.86.90:/mnt/Data/multimedia/media', path: '/home/bill/Media' }
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Desktop', path: '/home/lily/Desktop' }
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Downloads', path: '/home/lily/Downloads' }
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Documents', path: '/home/lily/Documents' }
+      - { src: '192.168.86.90:/mnt/Data/multimedia/media', path: '/home/lily/Media' }
+      - { src: '192.168.86.90:/mnt/ssd-files/paperless', path: '/home/bill/paperless' }
+
+  - name: mount nfs share directories
+    tags: workstations
+    ansible.posix.mount:
+      src: "{{ item.src }}"
+      path: "{{ item.path }}"      
+      fstype: "{{ item.fstype }}"
+      state: absent
+    loop:
+      - { src: '192.168.86.90/data ', path: '/home/wknight7/paperless/data', fstype: 'cifs' }
+      - { src: '192.168.86.90/media ', path: '/home/wknight7/paperless/media', fstype: 'cifs' }
+      - { src: '192.168.86.90/consume ', path: '/home/wknight7/paperless/consume', fstype: 'cifs' }
+      - { src: '192.168.86.90:/mnt/ssd-files/new-books ', path: '/home/wknight7/Downloads/new-books', fstype: 'nfs' }
+
+  - name: Recursively remove directories
+    tags: workstations
+    ansible.builtin.file:
+      path: "{{ item }}"
+      state: absent
+    loop:
+      - /home/wknight7
