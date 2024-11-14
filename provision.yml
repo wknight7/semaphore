@@ -1,6 +1,6 @@
 ---
 
-- hosts: laptops
+- hosts: test
   become: true
   tasks:
 
