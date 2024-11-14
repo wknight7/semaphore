@@ -33,16 +33,15 @@
 
   - name: umount share directories
     tags: workstations
-    ansible.posix.mount:
-      src: "{{ item.src }}"
-      path: "{{ item.path }}"      
-      fstype: "{{ item.fstype }}"
+    ansible.builtin.lineinfile:
+      path: /etc/fstab      
       state: absent
+      line: "{{ item:line }}"
     loop:
-      - { src: '192.168.86.90/data ', path: '/home/wknight7/paperless/data', fstype: 'cifs' }
-      - { src: '192.168.86.90/media ', path: '/home/wknight7/paperless/media', fstype: 'cifs' }
-      - { src: '192.168.86.90/consume ', path: '/home/wknight7/paperless/consume', fstype: 'cifs' }
-      - { src: '192.168.86.90:/mnt/ssd-files/new-books ', path: '/home/wknight7/Downloads/new-books', fstype: 'nfs' }
+      - { line: '//192.168.86.90/data /home/wknight7/paperless/data cifs vers=3.0,credentials=/home/wknight7/.SMBcredentials,uid=1000,gid=1000 0 0' }
+      - { line: '//192.168.86.90/media /home/wknight7/paperless/media cifs vers=3.0,credentials=/home/wknight7/.SMBcredentials,uid=1000,gid=1000 0 0' }
+      - { line: '//192.168.86.90/consume /home/wknight7/paperless/consume cifs vers=3.0,credentials=/home/wknight7/.SMBcredentials,uid=1000,gid=1000 0 0' }
+      - { line: '192.168.86.90:/mnt/ssd-files/new-books  /home/wknight7/Downloads/new-books      nfs     defaults        0       0' }
 
   - name: Recursively remove directories
     tags: workstations
