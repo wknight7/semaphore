@@ -114,13 +114,11 @@
   - name: Create multimedia directory 
     tags: media
     ansible.builtin.file:
-      path: "{{ item.dest }}"      
-      owner: "{{item.owner}}"
-      group: "{{item.group}}"
+      path: mnt/multimedia      
+      owner: bill
+      group: media
       state: directory
-    loop:
-      - { dest: 'mnt/multimedia', owner: 'bill', group: 'media' }
-
+    
   - name: mount nfs share directories for media managers
     tags: media
     ansible.posix.mount:
