@@ -31,7 +31,7 @@
       - { src: '192.168.86.90:/mnt/Data/multimedia/media', path: '/home/lily/Media' }
       - { src: '192.168.86.90:/mnt/ssd-files/paperless', path: '/home/bill/paperless' }
 
-  - name: mount nfs share directories
+  - name: umount share directories
     tags: workstations
     ansible.posix.mount:
       src: "{{ item.src }}"
