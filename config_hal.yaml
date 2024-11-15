@@ -1,0 +1,94 @@
+Host proxmox
+  HostName 192.168.86.143
+  User hal
+  IdentityFile ~/.ssh/hal
+
+Host truenas
+  HostName 192.168.86.90
+  User hal
+  IdentityFile ~/.ssh/hal
+
+Host backup
+  HostName 192.168.86.33
+  User hal
+  IdentityFile ~/.ssh/hal
+
+Host plex
+  HostName 192.168.86.97
+  User hal
+  IdentityFile ~/.ssh/hal
+
+Host wireguard
+  HostName 192.168.86.73
+  User hal
+  IdentityFile ~/.ssh/hal
+
+Host sab
+  HostName 192.168.86.101
+  User hal
+  IdentityFile ~/.ssh/hal
+
+Host radarr
+  HostName 192.168.86.79
+  User hal
+  IdentityFile ~/.ssh/hal
+
+Host sonarr
+  HostName 192.168.86.21
+  User hal
+  IdentityFile ~/.ssh/hal
+
+Host prowlarr
+  HostName 192.168.86.80
+  User hal
+  IdentityFile ~/.ssh/hal
+
+Host cloudflared
+  HostName 192.168.86.81
+  User hal
+  IdentityFile ~/.ssh/hal
+
+Host paperless
+  HostName 192.168.86.93
+  User hal
+  IdentityFile ~/.ssh/hal
+
+Host calibre-web
+  HostName 192.168.86.84
+  User hal
+  IdentityFile ~/.ssh/hal
+
+Host photoprism
+  HostName 192.168.86.42
+  User hal
+  IdentityFile ~/.ssh/hal
+
+Host calibre
+  HostName 192.168.86.26
+  User hal
+  IdentityFile ~/.ssh/hal
+
+Host desktop
+  HostName 192.168.86.40
+  User hal
+  IdentityFile ~/.ssh/hal
+
+Host trilium
+  HostName 192.168.86.56
+  User hal
+  IdentityFile ~/.ssh/hal
+
+Host lily
+  HostName 192.168.86.53
+  User hal
+  IdentityFile ~/.ssh/hal
+
+Host dell
+  HostName 192.168.86.55
+  User hal
+  IdentityFile ~/.ssh/hal
+
+Host samsung
+  HostName 192.168.86.83
+  User hal
+  IdentityFile ~/.ssh/hal
