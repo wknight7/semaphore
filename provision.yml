@@ -9,57 +9,11 @@
     package:
       update_cache: yes
     changed_when: false
-    when: ansible_distribution in ["Debian", "Ubuntu"]
+    when: ansible_distribution in ["Debian", "Ubuntu"]  
 
-  - name: add packages all
-    tags: always
-    ansible.builtin.apt:
-      pkg:      
-      - nfs-common
-      - software-properties-common
-      - mc      
+   
 
-  - name: add packages workstations
-    tags: workstations
-    ansible.builtin.apt:
-      pkg:
-      - git
-      - cmatrix
-
-  - name: Install VS Code
-    tags: workstations
-    community.general.snap:
-      name: code
-      classic: true 
-
-  - name: Set timezone to America/New_York
-    tags: always
-    community.general.timezone:
-      name: America/New_York
-
-  - name: Recursively remove directories
-    tags: workstations
-    ansible.builtin.file:
-      path: "{{ item }}"
-      state: absent
-    loop:
-      - /home/bill/Music
-      - /home/bill/Pictures
-      - /home/bill/Templates
-      - /home/bill/Videos
-      - /home/lily/Music
-      - /home/lily/Pictures
-      - /home/lily/Templates
-      - /home/lily/Videos
-
-  - name: Generate an OpenSSH keypair for Bill
-    tags: workstations
-    community.crypto.openssh_keypair:
-      path: /home/bill/.ssh/bill
-      type: ed25519
-      owner: bill
-      group: bill
-      comment: "bill {{ ansible_facts['nodename'] }} "
+  
 
 #  - name: fetch remote public key
 #    community.crypto.openssl_publickey_info:
@@ -72,72 +26,11 @@
  #     insertafter: EOF
  #     line: bill_ssh
 
-  - name: Create bill & lily home directories 
-    tags: workstations
-    ansible.builtin.file:
-      path: "{{ item.dest }}"      
-      owner: "{{item.owner}}"
-      group: "{{item.group}}"
-      state: directory
-    loop:
-      - { dest: 'home/bill/Media', owner: 'bill', group: 'media' }
-      - { dest: 'home/bill/paperless', owner: 'bill', group: 'docs' }
-      - { dest: 'home/bill/paperless/media', owner: 'bill', group: 'docs' }
-      - { dest: 'home/bill/paperless/data', owner: 'bill', group: 'docs' }
-      - { dest: 'home/bill/paperless/consume', owner: 'bill', group: 'docs' }
-      - { dest: 'home/lily/Media', owner: 'lily', group: 'media' }
-      - { dest: 'home/lily/paperless', owner: 'lily', group: 'docs' }
-      - { dest: 'home/lily/paperless/media', owner: 'lily', group: 'docs' }
-      - { dest: 'home/lily/paperless/data', owner: 'lily', group: 'docs' }
-      - { dest: 'home/lily/paperless/consume', owner: 'lily', group: 'docs' }
+  
 
-  - name: mount nfs share directories
-    tags: workstations
-    ansible.posix.mount:
-      src: "{{ item.src }}"
-      path: "{{ item.path }}"
-      opts: rw,sync
-      state: mounted
-      fstype: nfs
-    loop:
-      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Desktop', path: '/home/bill/Desktop' }
-      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Downloads', path: '/home/bill/Downloads' }
-      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Public', path: '/home/bill/Public' }
-      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Documents', path: '/home/bill/Documents' }
-      - { src: '192.168.86.90:/mnt/Data/multimedia/media', path: '/home/bill/Media' }
-      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Desktop', path: '/home/lily/Desktop' }
-      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Downloads', path: '/home/lily/Downloads' }
-      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Documents', path: '/home/lily/Documents' }
-      - { src: '192.168.86.90:/mnt/Data/multimedia/media', path: '/home/lily/Media' }
-      - { src: '192.168.86.90:/mnt/ssd-files/paperless', path: '/home/bill/paperless' }
+  
 
-  - name: Create multimedia directory 
-    tags: media
-    ansible.builtin.file:
-      path: /mnt/multimedia      
-      owner: bill
-      group: media
-      state: directory
+  
     
-  - name: mount nfs share directories for media managers
-    tags: media
-    ansible.posix.mount:
-      src: "{{ item.src }}"
-      path: "{{ item.path }}"
-      opts: rw,sync
-      state: mounted
-      fstype: nfs
-    loop:
-      - { src: '192.168.86.90:/mnt/Data/multimedia', path: '/mnt/multimedia' }
+  
 
-#  - name: mount smb share directories
-#    ansible.posix.mount:
-#      src: "{{ item.src }}"
-#      path: "{{ item.path }}"
-#      opts: "rw,sync,vers=3.0,credentials=/home/bill/.SMBcredentials,uid=1000,gid=1787,domain=192.168.86.90"
-#      state: mounted
-#      fstype: cifs
-#    loop:
-#      - { src: '//192.168.86.90/consume', path: '/home/bill/paperless/consume', }
-#      - { src: '//192.168.86.90/data', path: '/home/bill/paperless/data' }
-#      - { src: '//192.168.86.90/media', path: '/home/bill/paperless/media' }

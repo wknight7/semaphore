@@ -1,0 +1,31 @@
+---
+
+- hosts: all
+  become: true
+  roles:
+    - base
+
+- hosts: workstations
+  become: true
+  roles:
+    - workstations
+
+- hosts: lxc
+  become: true
+  roles:
+    - lxc
+
+- hosts: media_handlers
+  become: true
+  roles:
+    - media_h
+
+- hosts: media_players
+  become: true
+  roles: 
+    - media_p
+
+- hosts: docs
+  become: true
+  roles:
+    - docs
