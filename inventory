@@ -1,7 +1,7 @@
 [new]
-trilium ansible_host=192.168.86.56
+#trilium ansible_host=192.168.86.56
 bazarr ansible_host=192.168.86.59
-calibre ansible_host=192.168.86.26
+#calibre ansible_host=192.168.86.26
 
 [base]
 proxmox_ve ansible_host=192.168.86.143 

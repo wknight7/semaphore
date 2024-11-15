@@ -29,7 +29,7 @@
     tags: always
     user: 
       name: lily
-      groups: media
+      groups: sudo
       uid: 1002
 
   - name: add ssh key for hal
