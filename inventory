@@ -69,3 +69,7 @@ ansible ansible_host=192.168.86.83
 #ubuntu-desk-test ansible_host=192.168.86.55
 #test1 ansible_host=192.168.86.50
 sab ansible_host=192.168.86.101
+
+[arrs]
+radarr ansible_host=192.168.86.79 
+sonarr ansible_host=192.168.86.21 
