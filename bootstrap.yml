@@ -11,12 +11,12 @@
       upgrade: dist
     when: ansible_distribution in ["Debian", "Ubuntu"]
 
- - name: create bill user
-   tags: always
-   user: 
-     name: bill
-     groups: sudo
-     uid: 1000      
+  - name: create bill user
+    tags: always
+    user: 
+      name: bill
+      groups: sudo
+      uid: 1000      
  
   - name: create hal user if missing
     tags: always
