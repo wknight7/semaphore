@@ -12,6 +12,24 @@
     state: present
     gid: 1787
 
+- name: add hal to media and docs group
+  tags: always
+  user:
+    name: hal
+    groups: media,docs
+
+- name: add bill to media and docs group
+  tags: always
+  user:
+    name: bill
+    groups: media,docs
+
+- name: add lily to media and docs group
+  tags: always
+  user:
+    name: lily
+    groups: media,docs
+
 - name: add packages workstations
   tags: workstations
   ansible.builtin.apt:
