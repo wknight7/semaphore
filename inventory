@@ -6,7 +6,7 @@ samsung_laptop ansible_host=192.168.86.83
 
 [base]
 #proxmox_ve ansible_host=192.168.86.143 
-#roxmox_backup ansible_host=192.168.86.33 
+#proxmox_backup ansible_host=192.168.86.33 
 plex ansible_host=192.168.86.97
 wireguard ansible_host=192.168.86.73 
 sab ansible_host=192.168.86.101
@@ -24,7 +24,7 @@ dell_laptop ansible_host=192.168.86.55
 samsung_laptop ansible_host=192.168.86.83
 bazarr ansible_host=192.168.86.59
 #trilium ansible_host=192.168.86.56
-semaphore ansible_host=192.168.86.60
+#semaphore ansible_host=192.168.86.60
 #calibre ansible_host=192.168.86.26
 
 [docs]
