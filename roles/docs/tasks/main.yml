@@ -1,0 +1,25 @@
+- name: create group docs
+  tags: always
+  ansible.builtin.group:
+    name: docs
+    state: present
+    gid: 1787
+
+- name: add hal to docs group
+  tags: always
+  user:
+    name: hal
+    groups: docs
+
+- name: add lily to docs group
+  tags: workstations
+  user:
+    name: lily
+    groups: docs
+
+- name: add bill to docs group
+  tags: workstations
+  user:
+    name: bill
+    groups: docs
+
