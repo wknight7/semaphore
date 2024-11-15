@@ -1,8 +1,8 @@
 ---
 
-- hosts: test
+- hosts: all
   become: true
-  tasks:
+  pre_tasks:
 
   - name: update repo cache
     tags: always
@@ -11,7 +11,35 @@
     changed_when: false
     when: ansible_distribution in ["Debian", "Ubuntu"]  
 
-   
+- hosts: all
+  become: true
+  roles:
+    - base
+
+- hosts: workstations
+  become: true
+  roles:
+    - workstations
+
+- hosts: lxc
+  become: true
+  roles:
+    - lxc
+
+- hosts: media_handlers
+  become: true
+  roles:
+    - media_h
+
+- hosts: media_players
+  become: true
+  roles: 
+    - media_p
+
+- hosts: docs
+  become: true
+  roles:
+    - docs  
 
   
 
