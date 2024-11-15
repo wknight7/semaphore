@@ -15,6 +15,7 @@
     tags: always
     user: 
       name: bill
+      shell: /bin/bash
       groups: sudo
       uid: 1000      
  
@@ -22,6 +23,7 @@
     tags: always
     user: 
       name: hal
+      shell: /bin/bash
       groups: sudo
       uid: 1001
 
@@ -29,6 +31,7 @@
     tags: always
     user: 
       name: lily
+      shell: /bin/bash
       groups: sudo
       uid: 1002
 
