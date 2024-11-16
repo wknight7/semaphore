@@ -28,5 +28,4 @@
     ansible.builtin.lineinfile:
       path: /home/bill/.ssh/authorized_keys      
       insertafter: EOF
-      line: "{{ hostvars['test']['pub_key'] }}""
-  
+      line: "{{ hostvars['test']['pub_key'] }}"
