@@ -18,6 +18,6 @@
   - name: add end of line
     ansible.builtin.lineinfile:
       path: /home/bill/test.txt
-      regexp: 'add to the end  ---> '
-      insertafter: 'add to the end  ---> '
-      line: add to the end  ---> this was added to the end!!
+      regexp: 'add to the end  --> '
+      insertafter: 'add to the end  --> '
+      line: add to the end  --> this was added to the end!!
