@@ -15,7 +15,8 @@
       comment: "bill {{ ansible_facts['nodename'] }} "
 
   - name: copy and register bill.pub
-    ansible.builtin.shell: cat /home/bill/.ssh/bill.pub      
+    ansible.builtin.shell: 
+      cmd: cat /home/bill/.ssh/bill.pub      
     register: pub_key
 
   - name: make pub_key fact to pass to next play
@@ -23,15 +24,16 @@
       pub_key: "{{pub_key}}"
 
 - hosts: ssh
+  gather_facts: no
   become: true
   tasks:
 
   - name: set pub_key fact to distribute to servers
     set_fact: 
-      pub_key: "{{hostvars['test']['pub_key']}}"
+      key: "{{hostvars['test']['pub_key']}}"
   
   - name: Copy public key to all hosts
     ansible.builtin.lineinfile:
       path: /home/bill/.ssh/authorized_keys      
       insertafter: EOF
-      line: "{{pub_key}}"
+      line: "{{key}}"
