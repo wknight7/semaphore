@@ -6,12 +6,12 @@
     - software-properties-common
     - mc
 
-- name: mount nfs Configs share directories for all
-  tags: always
-  ansible.posix.mount:
-    src: 192.168.86.90:/mnt/ssd-files/home/bill/Configs
-    path: /home/bill/Configs
-    opts: rw,sync
-    state: mounted
-    fstype: nfs
+#- name: mount nfs Configs share directories for all
+#  tags: always
+#  ansible.posix.mount:
+#    src: 192.168.86.90:/mnt/ssd-files/home/bill/Configs
+#    path: /home/bill/Configs
+#    opts: rw,sync
+#    state: mounted
+#    fstype: nfs
 
