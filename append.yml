@@ -13,7 +13,7 @@
       insertafter: EOF
       line: 'testing 1...2...3...'
 
-# Add to a line
+# Add to end of a line.  I ran this 2 consecutive times, did not change the new line created during the first run.
 
   - name: add end of line
     ansible.builtin.lineinfile:
@@ -21,3 +21,5 @@
       regexp: 'add to the end  --> '
       insertafter: 'add to the end  --> '
       line: add to the end  --> this was added to the end!!
+
+# Append text from a file.
