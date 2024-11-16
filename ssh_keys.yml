@@ -1,0 +1,15 @@
+--- 
+
+- hosts: test
+  become: true
+  tasks:
+
+  - name: Generate an OpenSSH keypair for Bill
+    tags: workstations
+    community.crypto.openssh_keypair:
+      path: /home/bill/.ssh/bill
+      type: ed25519
+      owner: bill
+      group: bill
+      comment: "bill {{ ansible_facts['nodename'] }} "
+      

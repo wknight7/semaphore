@@ -2,8 +2,8 @@
 
 
 [base]
-#proxmox_ve ansible_host=192.168.86.143 
-#proxmox_backup ansible_host=192.168.86.33 
+proxmox_ve ansible_host=192.168.86.143 
+proxmox_backup ansible_host=192.168.86.33 
 plex ansible_host=192.168.86.97
 wireguard ansible_host=192.168.86.73 
 sab ansible_host=192.168.86.101
@@ -14,15 +14,16 @@ cloudflared ansible_host=192.168.86.81
 paperless ansible_host=192.168.86.93 
 calibre-web ansible_host=192.168.86.84 
 photoprism ansible_host=192.168.86.42 
-#ansible ansible_host=192.168.86.83
 desktop ansible_host=192.168.86.40
 lily ansible_host=192.168.86.53
 samsung_laptop ansible_host=192.168.86.83
-#bazarr ansible_host=192.168.86.59
+bazarr ansible_host=192.168.86.59
 #trilium ansible_host=192.168.86.56
 #semaphore ansible_host=192.168.86.60
-#calibre ansible_host=192.168.86.26
+calibre ansible_host=192.168.86.26
 bazarr2 ansible_host=192.168.86.92
+test_desk ansible_host=192.168.86.55
+dell_laptop ansible_host=192.168.86.95
 
 [docs]
 paperless ansible_host=192.168.86.93
@@ -37,7 +38,6 @@ cloudflared ansible_host=192.168.86.81
 paperless ansible_host=192.168.86.93 
 calibre-web ansible_host=192.168.86.84 
 photoprism ansible_host=192.168.86.42 
-#ansible ansible_host=192.168.86.83
 #bazarr ansible_host=192.168.86.59
 #trilium ansible_host=192.168.86.56
 calibre ansible_host=192.168.86.26
@@ -66,9 +66,10 @@ proxmox_ve ansible_host=192.168.86.143
 
 [workstations]
 desktop ansible_host=192.168.86.40
-lily ansible_host=192.168.86.55
-dell_laptop ansible_host=192.168.86.53
+test_desk ansible_host=192.168.86.55
+lily ansible_host=192.168.86.53
 samsung_laptop ansible_host=192.168.86.83
+dell_laptop ansible_host=192.168.86.95
 
 [test]
 test_desk ansible_host=192.168.86.55
