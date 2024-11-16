@@ -15,6 +15,7 @@
     tags: always
     user: 
       name: bill
+      create_home: yes
       shell: /bin/bash
       groups: sudo
       uid: 1000      
@@ -23,6 +24,7 @@
     tags: always
     user: 
       name: hal
+      create_home: yes
       shell: /bin/bash
       groups: sudo
       uid: 1001
@@ -31,6 +33,7 @@
     tags: always
     user: 
       name: lily
+      create_home: yes
       shell: /bin/bash
       groups: sudo
       uid: 1002
