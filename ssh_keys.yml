@@ -19,7 +19,7 @@
   - name: copy and register bill.pub
     ansible.builtin.blockinfile:
       path: /home/bill/.ssh/bill.pub
-      block: "{{ lookup('file', 'bill.pub' ) }}"
+      block: "{{ lookup('file', '/home/bill/.ssh/bill.pub' ) }}"
       register: pub_key
 
 - hosts: ssh
