@@ -30,7 +30,7 @@
 
   - name: set pub_key fact to distribute to servers
     set_fact: 
-      key: "{{hostvars['test']['pub_key']}}"
+      key: "{{ groupvars['test']['pub_key'] }}"
   
   - name: Copy public key to all hosts
     ansible.builtin.lineinfile:
