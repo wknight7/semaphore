@@ -13,4 +13,10 @@
       group: bill
       regenerate: never
       comment: "bill {{ ansible_facts['nodename'] }} "
+      register: key_pair
       
+  - name: Copy public key to all hosts
+    command: ssh-copy-id -i {{ key_pair.public_key }}  {{ item }}
+    loop: "{{ ssh }}" 
+    delegate_to: localhost
+  
