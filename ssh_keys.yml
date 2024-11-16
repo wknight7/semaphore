@@ -20,7 +20,7 @@
     register: pub_key
 
   - debug:
-      msg: "{{pub_key}}"
+      msg: "{{pub_key.stdout}}"
 
   - name: make pub_key fact to pass to next play
     set_fact:
