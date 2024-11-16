@@ -4,9 +4,20 @@
   become: true
   tasks:
 
+# Append to end of file
+
   - name: append to test.txt
     tags: always
     ansible.builtin.lineinfile:
       path: /home/bill/test.txt      
       insertafter: EOF
       line: 'testing 1...2...3...'
+
+# Add to a line
+
+- name: add end of line
+  ansible.builtin.lineinfile:
+    path: /home/bill/test.txt
+    regexp: 'add to the end  ---> '
+    insertafter: 'add to the end  ---> '
+    line: add to the end  ---> this was added to the end!!
