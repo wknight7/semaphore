@@ -3,8 +3,6 @@
 - hosts: test
   gather_facts: no
   become: true
-  vars:
-    pub_key: "{{ lookup('file', '/home/bill/.ssh/bill.pub') }}"
   tasks:
 
   - name: Generate an OpenSSH keypair for Bill
