@@ -19,6 +19,9 @@
       cmd: cat /home/bill/.ssh/bill.pub      
     register: pub_key
 
+  - debug:
+      msg: "{{ 'pub_key '}}"
+
   - name: make pub_key fact to pass to next play
     set_fact:
       pub_key: "{{pub_key}}"
