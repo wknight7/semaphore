@@ -92,5 +92,3 @@ Host samsung
   HostName 192.168.86.83
   User bill
   IdentityFile ~/.ssh/bill
-
-  test
