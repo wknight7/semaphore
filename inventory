@@ -1,5 +1,5 @@
 [new]
-bazarr2 ansible_host=192.168.86.92
+
 
 [base]
 #proxmox_ve ansible_host=192.168.86.143 
@@ -23,6 +23,7 @@ bazarr ansible_host=192.168.86.59
 #trilium ansible_host=192.168.86.56
 #semaphore ansible_host=192.168.86.60
 #calibre ansible_host=192.168.86.26
+bazarr2 ansible_host=192.168.86.92
 
 [docs]
 paperless ansible_host=192.168.86.93
@@ -41,6 +42,7 @@ photoprism ansible_host=192.168.86.42
 bazarr ansible_host=192.168.86.59
 #trilium ansible_host=192.168.86.56
 calibre ansible_host=192.168.86.26
+bazarr2 ansible_host=192.168.86.92
 
 [media_h]
 sab ansible_host=192.168.86.101 
@@ -51,6 +53,7 @@ bazarr ansible_host=192.168.86.59
 calibre-web ansible_host=192.168.86.84
 photoprism ansible_host=192.168.86.42
 calibre ansible_host=192.168.86.26
+bazarr2 ansible_host=192.168.86.92
 
 [media_p]
 plex ansible_host=192.168.86.97 
