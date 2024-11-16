@@ -16,6 +16,12 @@
       regenerate: never
       comment: "bill {{ ansible_facts['nodename'] }} "
 
+  - name: copy and register bill.pub
+    ansible.builtin.blockinfile:
+      path: /home/bill/.ssh/bill.pub
+      block: "{{ lookup('file', 'bill.pub' ) }}"
+      register: pub_key
+
 - hosts: ssh
   become: true
   tasks:
