@@ -11,5 +11,6 @@
       type: ed25519
       owner: bill
       group: bill
+      regenerate: never
       comment: "bill {{ ansible_facts['nodename'] }} "
       
