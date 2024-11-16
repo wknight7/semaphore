@@ -1,5 +1,5 @@
 [new]
-bazarr ansible_host=192.168.86.92
+bazarr2 ansible_host=192.168.86.92
 
 [base]
 #proxmox_ve ansible_host=192.168.86.143 
