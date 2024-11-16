@@ -1,6 +1,7 @@
 --- 
 
 - hosts: test
+  gather_facts: no
   become: true
   vars:
     pub_key: "{{ lookup('file', '/home/bill/.ssh/bill.pub') }}"
@@ -21,6 +22,7 @@
     register: pub_key
 
 - hosts: ssh
+  gather_facts: no
   become: true
   tasks:
 
@@ -28,5 +30,5 @@
     ansible.builtin.lineinfile:
       path: /home/bill/.ssh/authorized_keys      
       insertafter: EOF
-      line: "{{ hostvars['test'].pub_key }}"
+      line: {{ hostvars[test]['pub_key'] }}
   
