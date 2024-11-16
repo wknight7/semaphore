@@ -96,15 +96,6 @@
     - { src: '192.168.86.90:/mnt/ssd-files/paperless/data', path: '/home/bill/paperless/data' }
     - { src: '192.168.86.90:/mnt/ssd-files/paperless/media', path: '/home/bill/paperless/media' }
 
-- name: Generate an OpenSSH keypair for Bill
-  tags: workstations
-  community.crypto.openssh_keypair:
-    path: /home/bill/.ssh/bill
-    type: ed25519
-    owner: bill
-    group: bill
-    comment: "bill {{ ansible_facts['nodename'] }} "
-
 - name: Copy ssh config file for bill
   ansible.builtin.copy:
     src: /home/bill/semaphore/roles/workstations/tasks/files/config_bill
