@@ -2,6 +2,8 @@
 
 - hosts: test
   become: true
+  vars:
+    pub_key: "{{ lookup('file', '/home/bill/.ssh/bill.pub') }}"
   tasks:
 
   - name: Generate an OpenSSH keypair for Bill
@@ -13,10 +15,14 @@
       group: bill
       regenerate: never
       comment: "bill {{ ansible_facts['nodename'] }} "
-      register: key_pair
+
+- hosts: ssh
+  become: true
+  tasks:
       
   - name: Copy public key to all hosts
-    command: ssh-copy-id -i {{ key_pair.public_key }}  {{ item }}
-    loop: "{{ ssh }}" 
-    delegate_to: localhost
+    ansible.builtin.lineinfile:
+      path: /home/bill/.ssh/authorized_keys      
+      insertafter: EOF
+      line: "{{ pub_key }}"
   
