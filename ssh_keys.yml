@@ -23,10 +23,10 @@
 - hosts: ssh
   become: true
   tasks:
-      
+
   - name: Copy public key to all hosts
     ansible.builtin.lineinfile:
       path: /home/bill/.ssh/authorized_keys      
       insertafter: EOF
-      line: "{{ pub_key }}"
+      line: {{ hostvars['test'].pub_key }}
   
