@@ -13,12 +13,30 @@
         var: pub_key
       when: "'new' in group_names"
 
-# - name: Set fact from file 
-#     set_fact: 
-#       pub_key: "{{ lookup('file', '/home/bill/semaphore/host_vars/' + ansible_facts['nodename'] + '.yml') | from_yaml | selectattr('pub_key', 'defined') | map(attribute='pub_key') | first }}"
-#     when: "'new' in group_names"
+    - name: extract key
+      set_fact:
+        key: "{{ pub_key | regex_replace('^pub_key:', '') }}"
+      when: "'new' in group_names"
+
+    - name: Display public key
+      debug:
+        var: key
+      when: "'new' in group_names"
+
+
+
+# - name: Retrieve public key from file
+#   hosts: all
+#   tasks:
     
-#   - name: Display public key
-#     debug:
-#       msg: "The public key is: {{ key }}"
-#     when: "'new' in group_names"
+    
+#     - name: Set fact from file content
+#       set_fact:
+#         pub_key: "{{ lookup('file', '/home/bill/semaphore/host_vars/' + ansible_facts['nodename'] + '.yml') | from_yaml }}"
+#       when: "'new' in group_names"
+
+#     - name: Display public key
+#       debug:
+#         var: pub_key
+#       when: "'new' in group_names"
+
