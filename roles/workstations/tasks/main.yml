@@ -22,13 +22,14 @@
   tags: always
   user:
     name: bill
-    groups: media,docs
+    groups: media,docs,sudo,adm,root
 
 - name: add lily to media and docs group
   tags: always
   user:
     name: lily
-    groups: media,docs
+    passwd: $6$JVFSW9aA2rusYAUF$Pcsft.DPNNsgnjSiRCQZ9pvRJAycwVX9clKcloH1AhprpkhzjEWNzUWGGuB0aksTbDMDWUEn8KFj9D0fOuVmv.
+    groups: media,docs,sudo
 
 - name: add packages workstations
   tags: workstations
@@ -36,6 +37,7 @@
     pkg:
     - git
     - cmatrix
+    - whois
 
 - name: Install VS Code
   tags: workstations

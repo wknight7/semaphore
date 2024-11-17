@@ -6,6 +6,11 @@
     - software-properties-common
     - mc
 
+- name: add groups to bill
+  user: 
+    name: bill
+    groups: sudo,adm,root
+
 #- name: mount nfs Configs share directories for all
 #  tags: always
 #  ansible.posix.mount:

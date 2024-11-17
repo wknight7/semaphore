@@ -2,10 +2,22 @@
 
 - hosts: all
   become: true
-  tasks: 
+  gather_facts: true
+  tasks:  
 
-    - name: get host name of new host
-      
     
-    - name: get pub key from new host
+    - debug:
+        msg: "{{ ansible_facts['hostname'] }}"
+      register: host_name
+      when: inventory_hostname in groups["<test>"]
+
+    - name: set host_name fact
+      set_fact:
+        host: "{{host_name}}"
+
+    - name: get public key
+      get contents
+      path: /home/bill/semaphore/host_vars/{{host}}
+
+#    - name: get pub key from new host
       
