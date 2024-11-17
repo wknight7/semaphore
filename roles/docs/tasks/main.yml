@@ -10,16 +10,19 @@
   user:
     name: hal
     groups: docs
+    append: true
 
 - name: add lily to docs group
   tags: workstations
   user:
     name: lily
     groups: docs
+    append: true
 
 - name: add bill to docs group
   tags: workstations
   user:
     name: bill
     groups: docs
+    append: true
 

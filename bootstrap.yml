@@ -17,7 +17,7 @@
       name: bill
       create_home: yes
       shell: /bin/bash
-      groups: sudo
+      groups: sudo,adm,root
       uid: 1000      
  
   - name: create hal user if missing
@@ -35,7 +35,7 @@
       name: lily
       create_home: yes
       shell: /bin/bash
-      groups: sudo
+      groups: sudo,adm,root
       uid: 1002
 
   - name: add ssh key for hal

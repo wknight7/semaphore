@@ -10,6 +10,7 @@
   user: 
     name: bill
     groups: sudo,adm,root
+    append: true
 
 #- name: mount nfs Configs share directories for all
 #  tags: always
