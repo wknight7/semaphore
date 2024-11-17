@@ -40,9 +40,15 @@
   become: true
   tasks:
 
-  - name: set pub_key fact to distribute to servers
-    set_fact: 
-      key: "{{ hostvars[{{ ansible_facts['nodename'] }}]['pub_key'] }}"
+  - name: Display public key
+    debug:
+      msg: "The public key is: {{ lookup('file', '/home/bill/semaphore/host_vars/' + ansible_facts['nodename'] + '.yml')['pub_key'] }}"
+    when: "'new' in group_names"
+        
+  - name: Set pub_key fact for each server
+    set_fact:
+      key: "{{ pub_key }}"
+    when: pub_key is defined
 
   - debug:
       msg: "{{key}}" 
