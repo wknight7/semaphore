@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  become: true
+  tasks: 
+
+    - name: get host name of new host
+      
+    
+    - name: get pub key from new host
+      

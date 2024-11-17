@@ -3,7 +3,7 @@
 - hosts: test
   become: true
   tasks:
-
+  
   - name: Generate an OpenSSH keypair for Bill
     tags: workstations
     community.crypto.openssh_keypair:
@@ -21,19 +21,31 @@
 
   - debug:
       msg: "{{pub_key.stdout}}"
-
-  - name: make pub_key fact to pass to next play
+      
+  - name:
     set_fact:
-      pub_key: "{{pub_key}}"
+      key: "{{pub_key.stdout}}"
 
-- hosts: ssh
-  gather_facts: no
+  - name: create host_vars file
+    ansible.builtin.lineinfile:     
+      path: /home/bill/semaphore/host_vars/{{ansible_hostname}}.yml
+      line: pub_key:{{key}}
+      owner: bill
+      group: bill
+      mode: '0644'
+      create: yes
+    delegate_to: localhost
+
+- hosts: ssh  
   become: true
   tasks:
 
   - name: set pub_key fact to distribute to servers
     set_fact: 
-      key: "{{ groupvars['test']['pub_key'] }}"
+      key: "{{ hostvars[{{ ansible_facts['nodename'] }}]['pub_key'] }}"
+
+  - debug:
+      msg: "{{key}}" 
   
   - name: Copy public key to all hosts
     ansible.builtin.lineinfile:
