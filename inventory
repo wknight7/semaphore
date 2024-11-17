@@ -1,5 +1,5 @@
 [new]
-
+test_desk ansible_host=192.168.86.55
 
 [base]
 proxmox_ve ansible_host=192.168.86.143 
