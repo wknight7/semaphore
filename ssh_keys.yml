@@ -1,60 +1,122 @@
---- 
+---
 
-- hosts: test
-  become: true
+- name: Retrieve public key from file for new hosts
+  hosts: all
   tasks:
+    - name: Set fact from file content
+      set_fact:
+        pub_key: "{{ lookup('file', '/home/bill/semaphore/host_vars/' + ansible_facts['nodename'] + '.yml') | from_yaml }}"
+      when: "'new' in group_names"
+
+    - name: Display public key
+      debug:
+        var: pub_key
+      when: "'new' in group_names"
+
+    - name: Extract key
+      set_fact:
+        key: "{{ pub_key | regex_replace('^pub_key:', '') }}"
+      when: "'new' in group_names"
+
+    - name: Display key
+      debug:
+        var: key
+      when: "'new' in group_names"
+
+- name: Ensure .ssh directory and authorized_keys file exist
+  hosts: all
+  tasks:
+    - name: Create .ssh directory if it doesn't exist
+      file:
+        path: /home/bill/.ssh
+        state: directory
+        mode: '0700'
+      when: "'non_stations' in group_names and 'new' not in group_names"
+
+    - name: Create authorized_keys file if it doesn't exist
+      file:
+        path: /home/bill/.ssh/authorized_keys
+        state: touch
+        mode: '0600'
+      when: "'non_stations' in group_names and 'new' not in group_names"
+
+- name: Append public key to authorized_keys for non-stations hosts
+  hosts: all
+  tasks:
+    - name: Copy public key to all hosts
+      ansible.builtin.lineinfile:
+        path: /home/bill/.ssh/authorized_keys
+        insertafter: EOF
+        line: "{{ hostvars['test_desk'].key }}"
+      when: "'non_stations' in group_names and 'new' not in group_names"
+
+
+
+
+# - hosts: test
+#   become: true
+#   tasks:
   
-  - name: Generate an OpenSSH keypair for Bill
-    tags: workstations
-    community.crypto.openssh_keypair:
-      path: /home/bill/.ssh/bill
-      type: ed25519
-      owner: bill
-      group: bill
-      regenerate: never
-      comment: "bill {{ ansible_facts['nodename'] }} "
+#   - name: Generate an OpenSSH keypair for Bill
+#     tags: workstations
+#     community.crypto.openssh_keypair:
+#       path: /home/bill/.ssh/bill
+#       type: ed25519
+#       owner: bill
+#       group: bill
+#       regenerate: never
+#       comment: "bill {{ ansible_facts['nodename'] }} "
 
-  - name: copy and register bill.pub
-    ansible.builtin.shell: 
-      cmd: cat /home/bill/.ssh/bill.pub      
-    register: pub_key
+#   - name: copy and register bill.pub
+#     ansible.builtin.shell: 
+#       cmd: cat /home/bill/.ssh/bill.pub      
+#     register: pub_key
 
-  - debug:
-      msg: "{{pub_key.stdout}}"
+#   - debug:
+#       msg: "{{pub_key.stdout}}"
       
-  - name:
-    set_fact:
-      key: "{{pub_key.stdout}}"
+#   - name:
+#     set_fact:
+#       key: "{{pub_key.stdout}}"
 
-  - name: create host_vars file
-    ansible.builtin.lineinfile:     
-      path: /home/bill/semaphore/host_vars/{{ansible_hostname}}.yml
-      line: pub_key:{{key}}
-      owner: bill
-      group: bill
-      mode: '0644'
-      create: yes
-    delegate_to: localhost
+#   - name: create host_vars file
+#     ansible.builtin.lineinfile:     
+#       path: /home/bill/semaphore/host_vars/{{ansible_hostname}}.yml
+#       line: pub_key:{{key}}
+#       owner: bill
+#       group: bill
+#       mode: '0644'
+#       create: yes
+#     delegate_to: localhost
 
-- hosts: ssh  
-  become: true
-  tasks:
+# - name: Retrieve public key from file
+#   hosts: all
+#   tasks:
+    
+    
+#     - name: Set fact from file content
+#       set_fact:
+#         pub_key: "{{ lookup('file', '/home/bill/semaphore/host_vars/' + ansible_facts['nodename'] + '.yml') | from_yaml }}"
+#       when: "'new' in group_names"
 
-  - name: Display public key
-    debug:
-      msg: "The public key is: {{ lookup('file', '/home/bill/semaphore/host_vars/' + ansible_facts['nodename'] + '.yml')['pub_key'] }}"
-    when: "'new' in group_names"
-        
-  - name: Set pub_key fact for each server
-    set_fact:
-      key: "{{ pub_key }}"
-    when: pub_key is defined
+#     - name: Display public key
+#       debug:
+#         var: pub_key
+#       when: "'new' in group_names"
 
-  - debug:
-      msg: "{{key}}" 
+#     - name: extract key
+#       set_fact:
+#         key: "{{ pub_key | regex_replace('^pub_key:', '') }}"
+#       when: "'new' in group_names"
+
+#     - name: Display key
+#       debug:
+#         var: key
+#       when: "'new' in group_names"
   
-  - name: Copy public key to all hosts
-    ansible.builtin.lineinfile:
-      path: /home/bill/.ssh/authorized_keys      
-      insertafter: EOF
-      line: "{{key}}"
+#     - name: Copy public key to all hosts 
+#       ansible.builtin.lineinfile: 
+#         path: /home/bill/.ssh/authorized_keys 
+#         insertafter: EOF 
+#         line: "{{ key }}" 
+#       when: "'non_stations' in group_names and key is defined"
