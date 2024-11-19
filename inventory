@@ -1,5 +1,5 @@
 [new]
-test_desk ansible_host=192.168.86.55
+wg ansible_host=192.168.86.105
 
 [base]
 proxmox_ve ansible_host=192.168.86.143 
@@ -24,6 +24,7 @@ calibre ansible_host=192.168.86.26
 bazarr2 ansible_host=192.168.86.92
 test_desk ansible_host=192.168.86.55
 dell_laptop ansible_host=192.168.86.95
+wg ansible_host=192.168.86.105
 
 [docs]
 paperless ansible_host=192.168.86.93
@@ -42,6 +43,7 @@ photoprism ansible_host=192.168.86.42
 #trilium ansible_host=192.168.86.56
 calibre ansible_host=192.168.86.26
 bazarr2 ansible_host=192.168.86.92
+wg ansible_host=192.168.86.105
 
 [media_h]
 sab ansible_host=192.168.86.101 
@@ -87,6 +89,7 @@ calibre ansible_host=192.168.86.26
 bazarr2 ansible_host=192.168.86.92
 proxmox_ve ansible_host=192.168.86.143 
 proxmox_backup ansible_host=192.168.86.33
+wg ansible_host=192.168.86.105
 
 [test]
 test_desk ansible_host=192.168.86.55  
@@ -109,3 +112,4 @@ proxmox_ve ansible_host=192.168.86.143
 proxmox_backup ansible_host=192.168.86.33 
 plex ansible_host=192.168.86.97 
 test_desk ansible_host=192.168.86.55
+wg ansible_host=192.168.86.105
