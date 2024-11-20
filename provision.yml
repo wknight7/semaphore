@@ -11,36 +11,41 @@
     changed_when: false
     when: ansible_distribution in ["Debian", "Ubuntu"]  
 
-- hosts: all
+- hosts: new
   become: true
   roles:
     - base
 
-- hosts: workstations
+- hosts: new
   become: true
   roles:
     - workstations
 
-- hosts: lxc
+- hosts: new
   become: true
   roles:
     - lxc
 
-- hosts: media_handlers
+- hosts: new
   become: true
   roles:
     - media_h
 
-- hosts: media_players
+- hosts: new
   become: true
   roles: 
     - media_p
 
-- hosts: docs
+- hosts: new
   become: true
   roles:
     - docs  
 
+- hosts: localhost 
+  connection: local 
+  become: true 
+  roles: 
+    - workstations
   
 
 #  - name: fetch remote public key
