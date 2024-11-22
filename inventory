@@ -1,10 +1,10 @@
 [new]
-semaphore ansible_host=192.168.86.60
+plex ansible_host=192.168.86.107
 
 [base]
 proxmox_ve ansible_host=192.168.86.143 
 proxmox_backup ansible_host=192.168.86.33 
-plex ansible_host=192.168.86.97
+#plex ansible_host=192.168.86.97
 wireguard ansible_host=192.168.86.73 
 sab ansible_host=192.168.86.101
 radarr ansible_host=192.168.86.79 
@@ -25,6 +25,7 @@ bazarr2 ansible_host=192.168.86.92
 test_desk ansible_host=192.168.86.55
 dell_laptop ansible_host=192.168.86.95
 wg ansible_host=192.168.86.105
+plex ansible_host=192.168.86.107
 
 [docs]
 paperless ansible_host=192.168.86.93
@@ -44,6 +45,7 @@ photoprism ansible_host=192.168.86.42
 calibre ansible_host=192.168.86.26
 bazarr2 ansible_host=192.168.86.92
 wg ansible_host=192.168.86.105
+plex ansible_host=192.168.86.107
 
 [media_h]
 sab ansible_host=192.168.86.101 
@@ -57,7 +59,8 @@ calibre ansible_host=192.168.86.26
 bazarr2 ansible_host=192.168.86.92
 
 [media_p]
-plex ansible_host=192.168.86.97 
+#plex ansible_host=192.168.86.97 
+plex ansible_host=192.168.86.107
 
 [pvenodes]
 proxmox_ve ansible_host=192.168.86.143 
@@ -91,6 +94,7 @@ bazarr2 ansible_host=192.168.86.92
 proxmox_ve ansible_host=192.168.86.143 
 proxmox_backup ansible_host=192.168.86.33
 wg ansible_host=192.168.86.105
+plex ansible_host=192.168.86.107
 
 [test]
 test_desk ansible_host=192.168.86.55  
@@ -111,9 +115,10 @@ calibre ansible_host=192.168.86.26
 bazarr2 ansible_host=192.168.86.92
 proxmox_ve ansible_host=192.168.86.143 
 proxmox_backup ansible_host=192.168.86.33 
-plex ansible_host=192.168.86.97 
+#plex ansible_host=192.168.86.97 
 test_desk ansible_host=192.168.86.55
 wg ansible_host=192.168.86.105
+plex ansible_host=192.168.86.107
 
 [localhost]
 127.0.0.1 ansible_connection=local
