@@ -17,26 +17,31 @@
     - base
 
 - hosts: new
+  tags: workstations
   become: true
   roles:
     - workstations
 
 - hosts: new
+  tags: lxc
   become: true
   roles:
     - lxc
 
 - hosts: new
+  tags: media_h
   become: true
   roles:
     - media_h
 
 - hosts: new
+  tags: media_p
   become: true
   roles: 
     - media_p
 
 - hosts: new
+  tags: docs
   become: true
   roles:
     - docs  
