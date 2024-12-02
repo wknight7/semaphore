@@ -19,20 +19,20 @@
     groups: media
     append: true
 
-- name: Create media directory
-  tags: always
-  ansible.builtin.file:
-    path: /mnt/media
-    owner: bill
-    group: media
-    state: directory
-    mode: 0775
+# - name: Create media directory
+#   tags: always
+#   ansible.builtin.file:
+#     path: /mnt/media
+#     owner: bill
+#     group: media
+#     state: directory
+#     mode: 0775
 
-- name: mount nfs share directories for media managers
-  tags: always
-  ansible.posix.mount:
-    src: 192.168.86.90:/mnt/Data/multimedia/media
-    path: /mnt/media
-    opts: rw,sync
-    state: mounted
-    fstype: nfs
+# - name: mount nfs share directories for media managers
+#   tags: always
+#   ansible.posix.mount:
+#     src: 192.168.86.90:/mnt/Data/multimedia/media
+#     path: /mnt/media
+#     opts: rw,sync
+#     state: mounted
+#     fstype: nfs
