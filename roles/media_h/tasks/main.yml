@@ -1,42 +1,37 @@
-- name: create group media
+
+- name: Create group media
   tags: always
   ansible.builtin.group:
     name: media
     state: present
     gid: 1776
 
-- name: add hal to media group
+- name: Add hal to media group
   tags: always
-  user:
+  ansible.builtin.user:
     name: hal
     groups: media
     append: true
 
-- name: add bill to media group
+- name: Add bill to media group
   tags: always
-  user:
+  ansible.builtin.user:
     name: bill
     groups: media
     append: true
 
-- name: Create multimedia directory
-  tags: media
-  ansible.builtin.file:
-    path: /mnt/multimedia
-    owner: bill
-    group: media
-    state: directory
-    mode: 0775
+- name: Gather LXC container facts
+  command: lxc-ls --fancy
+  register: lxc_containers
 
-#- name: mount nfs share directories for media managers
-#  tags: media
-#  ansible.posix.mount:
-#    src: "{{ item.src }}"
-#    path: "{{ item.path }}"
-#    opts: rw,sync
-#    state: mounted
-#    fstype: nfs
-#  loop:
-#    - { src: '192.168.86.90:/mnt/Data/multimedia', path: '/mnt/multimedia' }
-#    - { src: '192.168.86.90:/mnt/Data/multimedia/media', path: '/mnt/multimedia/media' }
-#    - { src: '192.168.86.90:/mnt/Data/multimedia/usenet', path: '/mnt/multimedia/usenet' }
+- name: Ensure mountpoints are appended to LXC containers
+  block:
+    - name: Append mountpoints
+      lineinfile:
+        path: "/etc/pve/lxc/{{ item.container_id }}.conf"
+        line: "mp0: /media,mp=/media"
+        state: present
+      with_items: "{{ lxc_containers.stdout_lines | map('regex_search', '^\\s*([\\d]+)\\s', '\\g<1>') | list }}"
+      loop_control:
+        loop_var: item
+
