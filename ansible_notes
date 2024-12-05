@@ -1,0 +1,70 @@
+BOOTSTRAP CONTAINERS
+
+ansible-playbook -u root -k -c ssh bootstrap.yml
+
+ansible new_machines -m ansible.builtin.gather_facts | grep  "ansible_nodename"
+
+ansible all -m ping
+
+ansible all --list-hosts
+
+ansible apt update command (with sudo) 
+
+ansible all -m apt -a update_cache=true --become --ask-become-pass
+
+ansible all -m apt -a name=tmux --become --ask-become-pass 
+
+WHERE TMUX IS NAME OF WHATEVER i AM INSTALLING
+
+Where can I find apt changes?  (i.e. figure out what ansible (or I did)
+
+/var/log/apt
+
+ansible all -m apt -a "name=snapd state=latest" --become --ask-become-pass
+
+ansible all -m apt -a "upgrade=dist" --become --ask-become-pass
+
+pct_ssh.py
+
+~/ansible/plugins/ansible-pct-ssh
+
+REBUILD BAZARR - can't get it to set user passwd
+
+ansible-playbook --ask-become-pass update_systems.yml
+
+git push origin main
+
+how to update semaphore host
+
+ansible-playbook provision.yml --limit localhost
+
+
+
+sudo adduser hal --system --group
+
+sudo usermod hal -aG sudo,wknight7,apps
+
+sudo nano /etc/sudoers.d/hal
+
+hal ALL=(ALL) NOPASSWD: ALL
+
+
+
+AD-HOC COMMANDS
+
+https://www.youtube.com/watch?v=4REljLsOnXk&t=23s
+
+
+
+ansible_ssh_private_key_file
+
+
+
+BOOTSTRAP NEW MACHINE OR VM
+
+ansible-playbook bootstrap.yml -u bill --ask-become-pass
+
+if running for a new container, will need to use container bootstrap playbook
+
+
+

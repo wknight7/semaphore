@@ -1,14 +1,12 @@
 [new]
-lidarr ansible_host=192.168.86.109
+desktop ansible_host=192.168.86.40
 
 [base]
 proxmox_ve ansible_host=192.168.86.143 
 proxmox_backup ansible_host=192.168.86.33 
-#plex ansible_host=192.168.86.97
-wireguard ansible_host=192.168.86.73 
-sab ansible_host=192.168.86.101
+sab ansible_host=192.168.86.86
 radarr ansible_host=192.168.86.79 
-sonarr ansible_host=192.168.86.21 
+sonarr ansible_host=192.168.86.66 
 prowlarr ansible_host=192.168.86.80 
 cloudflared ansible_host=192.168.86.81 
 paperless ansible_host=192.168.86.93 
@@ -16,54 +14,53 @@ calibre-web ansible_host=192.168.86.84
 photoprism ansible_host=192.168.86.42 
 desktop ansible_host=192.168.86.40
 lily ansible_host=192.168.86.53
-samsung_laptop ansible_host=192.168.86.83
+samsung_laptop ansible_host=192.168.86.94
 #bazarr ansible_host=192.168.86.59
-#trilium ansible_host=192.168.86.56
-semaphore ansible_host=192.168.86.60
+trilium ansible_host=192.168.86.75
+#semaphore ansible_host=192.168.86.85
 calibre ansible_host=192.168.86.26
-bazarr2 ansible_host=192.168.86.92
+#bazarr2 ansible_host=192.168.86.92
 test_desk ansible_host=192.168.86.55
-dell_laptop ansible_host=192.168.86.95
-wg ansible_host=192.168.86.105
-plex ansible_host=192.168.86.107
-lidarr ansible_host=192.168.86.109
+dell_laptop ansible_host=192.168.86.55
+wg ansible_host=192.168.86.75
+plex ansible_host=192.168.86.87
+lidarr ansible_host=192.168.86.31
 
 [docs]
 paperless ansible_host=192.168.86.93
 
 [lxc]
-wireguard ansible_host=192.168.86.73 
-sab ansible_host=192.168.86.101
+
+sab ansible_host=192.168.86.86
 radarr ansible_host=192.168.86.79 
-sonarr ansible_host=192.168.86.21 
+sonarr ansible_host=192.168.86.66 
 prowlarr ansible_host=192.168.86.80 
 cloudflared ansible_host=192.168.86.81 
 paperless ansible_host=192.168.86.93 
 calibre-web ansible_host=192.168.86.84 
 photoprism ansible_host=192.168.86.42 
 #bazarr ansible_host=192.168.86.59
-#trilium ansible_host=192.168.86.56
+trilium ansible_host=192.168.86.75
 calibre ansible_host=192.168.86.26
-bazarr2 ansible_host=192.168.86.92
-wg ansible_host=192.168.86.105
-plex ansible_host=192.168.86.107
-lidarr ansible_host=192.168.86.109
+#bazarr2 ansible_host=192.168.86.92
+wg ansible_host=192.168.86.75
+plex ansible_host=192.168.86.87
+lidarr ansible_host=192.168.86.31
 
 [media_h]
-sab ansible_host=192.168.86.101 
+sab ansible_host=192.168.86.86 
 radarr ansible_host=192.168.86.79 
-sonarr ansible_host=192.168.86.21 
+sonarr ansible_host=192.168.86.66 
 prowlarr ansible_host=192.168.86.80 
 #bazarr ansible_host=192.168.86.59
 calibre-web ansible_host=192.168.86.84
 photoprism ansible_host=192.168.86.42
 calibre ansible_host=192.168.86.26
-bazarr2 ansible_host=192.168.86.92
-lidarr ansible_host=192.168.86.109
+#bazarr2 ansible_host=192.168.86.92
+lidarr ansible_host=192.168.86.31
 
 [media_p]
-#plex ansible_host=192.168.86.97 
-plex ansible_host=192.168.86.107
+plex ansible_host=192.168.86.87
 
 [pvenodes]
 proxmox_ve ansible_host=192.168.86.143 
@@ -76,54 +73,53 @@ proxmox_ve ansible_host=192.168.86.143
 desktop ansible_host=192.168.86.40
 test_desk ansible_host=192.168.86.55
 lily ansible_host=192.168.86.53
-samsung_laptop ansible_host=192.168.86.83
-dell_laptop ansible_host=192.168.86.95
-semaphore ansible_host=192.168.86.60
+samsung_laptop ansible_host=192.168.86.94
+dell_laptop ansible_host=192.168.86.55
+#semaphore ansible_host=192.168.86.85
 
 [ssh]
-wireguard ansible_host=192.168.86.73 
-sab ansible_host=192.168.86.101
+
+sab ansible_host=192.168.86.86
 radarr ansible_host=192.168.86.79 
-sonarr ansible_host=192.168.86.21 
+sonarr ansible_host=192.168.86.66 
 prowlarr ansible_host=192.168.86.80 
 cloudflared ansible_host=192.168.86.81 
 paperless ansible_host=192.168.86.93 
 calibre-web ansible_host=192.168.86.84 
 photoprism ansible_host=192.168.86.42 
 #bazarr ansible_host=192.168.86.59
-#trilium ansible_host=192.168.86.56
+trilium ansible_host=192.168.86.75
 calibre ansible_host=192.168.86.26
-bazarr2 ansible_host=192.168.86.92
+#bazarr2 ansible_host=192.168.86.92
 proxmox_ve ansible_host=192.168.86.143 
 proxmox_backup ansible_host=192.168.86.33
-wg ansible_host=192.168.86.105
-plex ansible_host=192.168.86.107
-lidarr ansible_host=192.168.86.109
+wg ansible_host=192.168.86.75
+plex ansible_host=192.168.86.87
+lidarr ansible_host=192.168.86.31
 
 [test]
 test_desk ansible_host=192.168.86.55  
 
 [non_stations]
-wireguard ansible_host=192.168.86.73 
-sab ansible_host=192.168.86.101
+
+sab ansible_host=192.168.86.86
 radarr ansible_host=192.168.86.79 
-sonarr ansible_host=192.168.86.21 
+sonarr ansible_host=192.168.86.66 
 prowlarr ansible_host=192.168.86.80 
 cloudflared ansible_host=192.168.86.81 
 paperless ansible_host=192.168.86.93 
 calibre-web ansible_host=192.168.86.84 
 photoprism ansible_host=192.168.86.42 
 #bazarr ansible_host=192.168.86.59
-#trilium ansible_host=192.168.86.56
+trilium ansible_host=192.168.86.75
 calibre ansible_host=192.168.86.26
-bazarr2 ansible_host=192.168.86.92
+#bazarr2 ansible_host=192.168.86.92
 proxmox_ve ansible_host=192.168.86.143 
 proxmox_backup ansible_host=192.168.86.33 
-#plex ansible_host=192.168.86.97 
 test_desk ansible_host=192.168.86.55
-wg ansible_host=192.168.86.105
-plex ansible_host=192.168.86.107
-lidarr ansible_host=192.168.86.109
+wg ansible_host=192.168.86.75
+plex ansible_host=192.168.86.87
+lidarr ansible_host=192.168.86.31
 
 [localhost]
 127.0.0.1 ansible_connection=local

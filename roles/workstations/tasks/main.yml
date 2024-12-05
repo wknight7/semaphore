@@ -48,6 +48,12 @@
 #     name: code
 #     classic: true
 
+# - name: change permissions for Bill home directory
+#   file:
+#     path: /home/bill
+#     recurse: yes
+#     mode: '0775'
+
 - name: Recursively remove directories
   tags: workstations
   ansible.builtin.file:
