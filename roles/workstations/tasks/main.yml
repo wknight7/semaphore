@@ -42,11 +42,11 @@
     - cmatrix
     - whois
 
-# - name: Install VS Code
-#   tags: workstations
-#   community.general.snap:
-#     name: code
-#     classic: true
+- name: Install VS Code
+  tags: workstations
+  community.general.snap:
+    name: code
+    classic: true
 
 # - name: change permissions for Bill home directory
 #   file:
