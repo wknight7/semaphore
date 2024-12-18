@@ -84,3 +84,14 @@
       owner: root
       group: root
       mode: 0440 
+
+  - name: add packages all
+    tags: always
+    ansible.builtin.apt:
+      pkg:
+      - build-essential
+      - software-properties-common
+      - mc
+      - ubuntu-minimal
+      - python3-all
+      - deadsnakes
