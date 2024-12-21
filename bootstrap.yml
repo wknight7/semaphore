@@ -20,14 +20,14 @@
       groups: sudo,adm,root
       uid: 1000      
 
-  - name: create hal user if missing
+  - name: create hal user
     tags: always
     user: 
       name: hal
       create_home: yes
       shell: /bin/bash
       groups: sudo
-      uid: 1001
+      uid: 1999
 
   - name: create user lily
     tags: always
