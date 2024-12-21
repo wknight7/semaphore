@@ -49,7 +49,7 @@
     tags: always
     authorized_key: 
       user: hal
-      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDgyiZ4tMW4B6bJ6VNep4e9grqu0Mc8JbDoZsFs3Kd1EYPKMt/p2oS0nH8BeqVgYVZ34AW4Yw42DSYza1upJ7vOOwN0YpjkXoXhW9B9u5caS9IfRjSa4nVCX3eXRY6XpMWfX25BxTZNxI8BT8QihIhX7MDFSO4d/93YcBwnhXenLIe1Mf5Od1B7qbr2j7V4w2VLt1UeRrhrlPnYFawhdm0kllGNL9oFaU0QEvjaect3wBVKVybhDUGIeo5r3Gkt6SctYc69XlJyufWI6eEfptP19rPhTMJzP4W3gIKqNcs/XeiuUeUoWkpLC8Od4DUcl1+VbbIAIX/yjj4MVHk48Uvhpvp3VZ2EcDxLTxV4M6ZQTsTno40w880CJ3uqLFDycjdvBhw1JNQZ4VCLAKi6i3JeH3Gvo8M1a9QNMBbk7/g1qm3mZ3NWLaTltXdnrr/X+/sCVUNWdEaH7fektUMWTl/YtqeivPr4nHDnaJseKxkRwjmemX02YZDS/i++12WwW4c= bill@semaphore"
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINEgcmZPiPGXw7C+HO5mncDkRbLuX+OWWnVuPFqquAHo ansible"
     notify: 
       - Ensure .ssh directory exists
 
